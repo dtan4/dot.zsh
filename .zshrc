@@ -1,4 +1,5 @@
-fpath=("$HOME/zsh-completions/src" $fpath)
+fpath=("$ZDOTDIR/zsh-completions/src" $fpath)
+source $ZDOTDIR/z/z.sh
 
 autoload -Uz compinit
 compinit
@@ -234,4 +235,4 @@ compdef -d scp
 compdef -d gem
 compdef -d thor
 
-[ -f ~/.zshrc.`uname` ] && source ~/.zshrc.`uname`
+[ -f $ZDOTDIR/.zshrc.`uname` ] && source $ZDOTDIR/.zshrc.`uname`
