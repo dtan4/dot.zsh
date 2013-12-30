@@ -1,5 +1,6 @@
 fpath=("$ZDOTDIR/zsh-completions/src" $fpath)
 source $ZDOTDIR/z/z.sh
+source $ZDOTDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 autoload -Uz compinit
 compinit
