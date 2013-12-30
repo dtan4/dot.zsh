@@ -184,6 +184,8 @@ alias be='bundle exec'
 alias bi='bundle install'
 alias bg='bundle gem'
 
+alias vless='less.sh'
+
 function frep {
     find . -type f -name $1 | xargs grep $2
 }
