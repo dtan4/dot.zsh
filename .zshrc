@@ -228,6 +228,9 @@ fi
 
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 
+# completion alias
+compdef mosh=ssh
+
 # disable completion
 compdef -d rake
 compdef -d npm
