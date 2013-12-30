@@ -10,6 +10,11 @@ colors
 export LANG=ja_JP.UTF-8
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 
+# http://d.hatena.ne.jp/naoya/20130108/1357630895
+function precmd () {
+   z --add "$(pwd -P)"
+}
+
 # http://qiita.com/mollifier/items/8d5a627d773758dd8078
 function rprompt-git-not-pushed() {
     local count
