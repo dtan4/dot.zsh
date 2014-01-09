@@ -14,4 +14,4 @@ alias v8="rlwrap v8"
 function chpwd() { ls -G -w }
 
 export PATH=/usr/local/share/npm/bin:$PATH
-export PATH=/opt/gnu:$PATH
+export PATH=/usr/local/texlive/2013/bin/x86_64-darwin:$PATH
