@@ -193,6 +193,7 @@ alias gcc='gcc -Werror -Wall'
 alias be='bundle exec'
 alias bi='bundle install'
 alias bg='bundle gem'
+alias pingg='ping www.google.com'
 
 alias vless='less.sh'
 
