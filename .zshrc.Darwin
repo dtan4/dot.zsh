@@ -15,3 +15,8 @@ function chpwd() { ls -G -w }
 
 export PATH=/usr/local/share/npm/bin:$PATH
 export PATH=/usr/local/texlive/2013/bin/x86_64-darwin:$PATH
+
+source $ZDOTDIR/zsh-notify/notify.plugin.zsh
+
+export SYS_NOTIFIER="/usr/local/bin/terminal-notifier"
+export NOTIFY_COMMAND_COMPLETE_TIMEOUT=10

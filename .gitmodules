@@ -7,3 +7,6 @@
 [submodule "zsh-syntax-highlighting"]
 	path = zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule "zsh-notify"]
+	path = zsh-notify
+	url = https://github.com/marzocchi/zsh-notify.git
