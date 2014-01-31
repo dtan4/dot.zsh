@@ -197,6 +197,15 @@ alias pingg='ping www.google.com'
 
 alias vless='less.sh'
 
+function mkd {
+    if [[ -d $1 ]]; then
+        echo "$1 already exists!"
+        cd $1
+    else
+        mkdir -p $1 && cd $1
+    fi
+}
+
 function frep {
     find . -type f -name $1 | xargs grep $2
 }
