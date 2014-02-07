@@ -168,7 +168,7 @@ alias cdmemo='cd ~/Dropbox/memo'
 
 ### cd to the top level of git project ###
 function cdtop() {
-    if git rev-parse --is-inside-work-tree > /dev/null 2&>1; then
+    if git rev-parse --is-inside-work-tree > /dev/null; then
         cd `git rev-parse --show-toplevel`
     fi
 }
