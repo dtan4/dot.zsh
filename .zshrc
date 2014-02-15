@@ -253,8 +253,6 @@ if [[ -d $HOME/.ndenv ]]; then
     eval "$(ndenv init -)"
 fi
 
-export PATH=$HOME/.nodebrew/current/bin:$PATH
-
 # completion alias
 compdef mosh=ssh
 
