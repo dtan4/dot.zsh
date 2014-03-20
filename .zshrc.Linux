@@ -18,6 +18,7 @@ alias singled='xrandr --output HDMI1 --off'
 function chpwd() { ls --color }
 
 export PATH=/usr/local/appengine-java-sdk/bin:$PATH
+export PATH=/usr/local/heroku/bin:$PATH
 
 function jpkey {
     setxkbmap -layout jp
