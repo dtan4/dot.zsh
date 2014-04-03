@@ -9,7 +9,7 @@ autoload colors
 colors
 
 export LANG=ja_JP.UTF-8
-export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+export PATH=/usr/local/bin:/usr/local/sbin:/sbin:$PATH
 
 # http://d.hatena.ne.jp/naoya/20130108/1357630895
 function precmd () {
