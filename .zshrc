@@ -194,7 +194,7 @@ alias be='bundle exec'
 alias bi='bundle install'
 alias bg='bundle gem'
 alias pingg='ping www.google.com'
-
+alias vbreload="vagrant up; vagrant ssh -c 'sudo ln -s /opt/VBoxGuestAdditions-4.3.10/lib/VBoxGuestAdditions /usr/lib/VBoxGuestAdditions'; vagrant reload"
 alias vless='less.sh'
 
 function mkd {
