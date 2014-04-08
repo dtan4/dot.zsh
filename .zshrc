@@ -262,5 +262,6 @@ compdef -d npm
 compdef -d scp
 compdef -d gem
 compdef -d thor
+compdef -d knife
 
 [ -f $ZDOTDIR/.zshrc.`uname` ] && source $ZDOTDIR/.zshrc.`uname`
