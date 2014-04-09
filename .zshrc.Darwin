@@ -21,3 +21,5 @@ source $ZDOTDIR/zsh-notify/notify.plugin.zsh
 
 export SYS_NOTIFIER="/usr/local/bin/terminal-notifier"
 export NOTIFY_COMMAND_COMPLETE_TIMEOUT=10
+
+export SSH_AUTH_SOCK=$(launchctl getenv SSH_AUTH_SOCK)
