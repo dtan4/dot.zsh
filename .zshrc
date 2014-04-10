@@ -229,28 +229,16 @@ REPORTTIME=3
 export PATH=$PATH:$HOME/local
 export PATH=~/.cabal/bin:$PATH
 
-if [[ -d $HOME/.plenv ]]; then
-    export PATH=~/.plenv/bin:$PATH
-    export PATH=~/.plenv/shims:$PATH
-    eval "$(plenv init -)"
-fi
+if [[ -d $HOME/.anyenv ]]; then
+    export PATH=~/.anyenv/bin:$PATH
+    export PATH=~/.anyenv/shims:$PATH
+    eval "$(anyenv init -)"
 
-if [[ -d $HOME/.pyenv ]]; then
-    export PATH=~/.pyenv/bin:$PATH
-    export PATH=~/.pyenv/shims:$PATH
-    eval "$(pyenv init -)"
-fi
-
-if [[ -d $HOME/.rbenv ]]; then
-    export PATH=~/.rbenv/bin:$PATH
-    export PATH=~/.rbenv/shims:$PATH
-    eval "$(rbenv init -)"
-fi
-
-if [[ -d $HOME/.ndenv ]]; then
-    export PATH=~/.ndenv/bin:$PATH
-    export PATH=~/.ndenv/shims:$PATH
-    eval "$(ndenv init -)"
+    # http://qiita.com/luckypool/items/f1e756e9d3e9786ad9ea
+    for D in `ls $HOME/.anyenv/envs`
+    do
+        export PATH="$HOME/.anyenv/envs/$D/shims:$PATH"
+    done
 fi
 
 # completion alias
