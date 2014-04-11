@@ -224,6 +224,11 @@ function server() {
     ruby -rwebrick -e 'WEBrick::HTTPServer.new({:DocumentRoot => "./", :Port => 8080}).start'
 }
 
+function viaproxy() {
+    export proxy_address="proxy.noc.titech.ac.jp:3128"
+    http_proxy=$proxy_address https_proxy=$proxy_address $@
+}
+
 REPORTTIME=3
 
 export PATH=$PATH:$HOME/local
