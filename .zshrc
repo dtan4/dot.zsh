@@ -225,7 +225,7 @@ function server() {
 }
 
 function viaproxy() {
-    export proxy_address="proxy.noc.titech.ac.jp:3128"
+    local proxy_address="proxy.noc.titech.ac.jp:3128"
     http_proxy=$proxy_address https_proxy=$proxy_address $@
 }
 
