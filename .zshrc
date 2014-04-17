@@ -150,7 +150,7 @@ export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 alias javac="javac -J-Dfile.encoding=UTF8"
 # alias java="java -J-Dfile.encoding=UTF8"
 
-export LESS='-R'
+export LESS='-R --LONG-PROMPT'
 export TERM=xterm-256color
 
 bindkey "" backward-delete-char
