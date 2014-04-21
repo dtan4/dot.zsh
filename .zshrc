@@ -137,6 +137,7 @@ zstyle ':completion:*' list-separator '-->'
 zstyle ':completion:*:manuals' separate-sections true
 zstyle ':completion:*:*files' ignored-patterns '*?.o' '*?~' '*\#'
 zstyle ':completion:*' ignore-parents parent pwd ..
+zstyle ':completion:*' menu select
 
 # Less Colors for Man Pages
 export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
