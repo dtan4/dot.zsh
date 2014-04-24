@@ -238,7 +238,7 @@ export PATH=~/.cabal/bin:$PATH
 if [[ -d $HOME/.anyenv ]]; then
     export PATH=~/.anyenv/bin:$PATH
     export PATH=~/.anyenv/shims:$PATH
-    eval "$(anyenv init -)"
+    eval "$(anyenv init - zsh)"
 
     # http://qiita.com/luckypool/items/f1e756e9d3e9786ad9ea
     for D in `ls $HOME/.anyenv/envs`
