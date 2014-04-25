@@ -247,7 +247,7 @@ if [[ -d $HOME/.anyenv ]]; then
     done
 fi
 
-if [[ $(which direnv) ]]; then
+if [ $(which direnv) ]; then
     eval "$(direnv hook zsh)"
 fi
 
