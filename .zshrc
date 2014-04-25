@@ -247,6 +247,10 @@ if [[ -d $HOME/.anyenv ]]; then
     done
 fi
 
+if [[ $(which direnv) ]]; then
+    eval "$(direnv hook zsh)"
+fi
+
 # completion alias
 compdef mosh=ssh
 
