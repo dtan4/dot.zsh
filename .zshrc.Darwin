@@ -14,7 +14,7 @@ alias v8="rlwrap v8"
 ### ls after cd ###
 function chpwd() { ls -G -w }
 
-export PATH=/usr/local/texlive/2013/bin/x86_64-darwin:$PATH
+export PATH=/usr/texbin:$PATH
 export PATH=~/android-sdks/platform-tools:$PATH
 
 source $ZDOTDIR/zsh-notify/notify.plugin.zsh
