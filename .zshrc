@@ -16,77 +16,6 @@ function precmd () {
    z --add "$(pwd -P)"
 }
 
-# http://qiita.com/mollifier/items/8d5a627d773758dd8078
-function rprompt-git-not-pushed() {
-    local count
-    if [[ "$PWD" =~ '/\.git(/.*)?$' ]]; then
-        return
-    fi
-    count=`git rev-list origin/master..master 2>/dev/null | wc -l | tr -d ' '`
-    if [[ $count -ne 0 ]]; then
-        echo "[%{${fg_bold[red]}%}${count}%{$reset_color%}]"
-    fi
-    return 0
-}
-
-function rprompt-git-stash() {
-    local count
-    if [[ "$PWD" =~ '/\.git(/.*)?$' ]]; then
-        return
-    fi
-    count=`git stash list 2>/dev/null | wc -l | tr -d ' '`
-    if [[ $count -ne 0 ]]; then
-        echo "[%{${fg_bold[yellow]}%}${count}%{$reset_color%}]"
-    fi
-    return 0
-}
-
-function rprompt-git-current-branch {
-    local name st color
-
-    if [[ "$PWD" =~ '/\.git(/.*)?$' ]]; then
-        return
-    fi
-    name=$(git symbolic-ref --short HEAD 2> /dev/null)
-    if [[ -z $name ]]; then
-        return
-    fi
-    st=`git status 2> /dev/null`
-    if [[ -n `echo "$st" | grep "^nothing to"` ]]; then
-        color=${fg[green]}
-    elif [[ -n `echo "$st" | grep "^nothing added"` ]]; then
-        color=${fg[yellow]}
-    elif [[ -n `echo "$st" | grep "^# Untracked"` ]]; then
-        color=${fg_bold[red]}
-    else
-        color=${fg[red]}
-    fi
-
-    echo "[%{$color%}$name%{$reset_color%}]"
-}
-
-setopt prompt_subst
-PROMPT="%{${fg[magenta]}%}%n@%m ${fg[yellow]}%}%(5~,%-2~/.../%2~,%~)%{${reset_color}%} [%D{%Y-%m-%d %T}] [%h]
-% "
-precmd(){
-    PROMPT="%{${fg[magenta]}%}%n@%m ${fg[yellow]}%}%(5~,%-2~/.../%2~,%~)%{${reset_color}%} [%D{%Y-%m-%d %T}] [%h]
-%{%(?.${reset_color}.${fg[red]})%}%#%{${reset_color}%} "
-}
-PROMPT2='[%n]> '
-RPROMPT='`rprompt-git-not-pushed``rprompt-git-stash``rprompt-git-current-branch`'
-
-case "${TERM}" in
-    kterm*|xterm)
-	precmd(){
-	    echo -ne "\033]0;${USER}@${HOST%%.*}:${PWD}\007"
-	}
-	;;
-    dumb | emacs)
-	PROMPT="%m:%~> "
-	unsetopt zle
-	;;
-esac
-
 HISTFILE=${HOME}/.zsh_hisrory
 HISTSIZE=10000000
 SAVELIST=10000000
@@ -148,92 +77,12 @@ export LESS_TERMCAP_so=$'\E[38;5;246m'    # begin standout-mode - info box
 export LESS_TERMCAP_ue=$'\E[0m'           # end underline
 export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 
-alias javac="javac -J-Dfile.encoding=UTF8"
-# alias java="java -J-Dfile.encoding=UTF8"
-
 export LESS='-R --LONG-PROMPT'
 export TERM=xterm-256color
 
 bindkey "" backward-delete-char
 
-# reload .zshrc
-# alias sourcez='source ~/.zshrc'
-alias reload='exec zsh -l'
-
-# extend cd
-alias cddown='cd ~/Downloads'
-alias cdtmp='cd ~/tmp'
-alias cddrop='cd ~/Dropbox'
-alias cdarc='cd ~/Dropbox/Archives'
-alias cdmemo='cd ~/Dropbox/memo'
-
-### cd to the top level of git project ###
-function cdtop() {
-    if git rev-parse --is-inside-work-tree > /dev/null; then
-        cd `git rev-parse --show-toplevel`
-    fi
-}
-
-### completion of ~/git ###
-function cdgit {
-    cd ~/git/$1
-}
-
-function _g {
-    _files -W ~/git/ && return 0;
-    return 1;
-}
-
-compdef _g cdgit
-### ###
-
-# extend existed command
-alias curl='noglob curl'
-alias gp='grep -n --color=auto'
-alias gcc='gcc -Werror -Wall'
-alias be='bundle exec'
-alias bi='bundle install'
-alias bg='bundle gem'
-alias pingg='ping www.google.com'
-alias vbreload="vagrant up; vagrant ssh -c 'sudo ln -s /opt/VBoxGuestAdditions-4.3.10/lib/VBoxGuestAdditions /usr/lib/VBoxGuestAdditions'; vagrant reload"
-alias vless='less.sh'
-
-function mkd {
-    if [[ -d $1 ]]; then
-        echo "$1 already exists!"
-        cd $1
-    else
-        mkdir -p $1 && cd $1
-    fi
-}
-
-function frep {
-    find . -type f -name $1 | xargs grep $2
-}
-
-function pdfgrep {
-    find . -name '*.pdf.txt' | xargs grep -i $1 2> /dev/null | sed -e 's/\.pdf\.txt/\.pdf/g'
-}
-
-if [[ -x `which colordiff` ]]; then
-    alias diff='colordiff -u'
-else
-    alias diff='diff -u'
-fi
-
-function server() {
-    ruby -rwebrick -e 'WEBrick::HTTPServer.new({:DocumentRoot => "./", :Port => 8080}).start'
-}
-
-function viaproxy() {
-    local proxy_address="proxy.noc.titech.ac.jp:3128"
-    http_proxy=$proxy_address https_proxy=$proxy_address $@
-}
-
 REPORTTIME=3
-
-export PATH=$PATH:$HOME/local
-export PATH=~/.cabal/bin:$PATH
 
 if [[ -d $HOME/.anyenv ]]; then
     export PATH=~/.anyenv/bin:$PATH
@@ -262,4 +111,6 @@ compdef -d gem
 compdef -d thor
 compdef -d knife
 
+[ -f $ZDOTDIR/.zshrc.prompt ] && source $ZDOTDIR/.zshrc.prompt
+[ -f $ZDOTDIR/.zshrc.alias ] && source $ZDOTDIR/.zshrc.alias
 [ -f $ZDOTDIR/.zshrc.`uname` ] && source $ZDOTDIR/.zshrc.`uname`
