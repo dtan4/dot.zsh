@@ -1,0 +1,46 @@
+# -*- mode: sh -*-
+
+### cd to the top level of git project ###
+function cdtop() {
+    if git rev-parse --is-inside-work-tree > /dev/null; then
+        cd `git rev-parse --show-toplevel`
+    fi
+}
+
+### completion of ~/git ###
+function cdgit {
+    cd ~/git/$1
+}
+
+function _g {
+    _files -W ~/git/ && return 0;
+    return 1;
+}
+
+compdef _g cdgit
+
+function line_count {
+    find . -name "$1" | xargs wc -l
+}
+
+function mkd {
+    if [[ -d $1 ]]; then
+        echo "$1 already exists!"
+        cd $1
+    else
+        mkdir -p $1 && cd $1
+    fi
+}
+
+function pdfgrep {
+    find . -name '*.pdf.txt' | xargs grep -i $1 2> /dev/null | sed -e 's/\.pdf\.txt/\.pdf/g'
+}
+
+function server() {
+    ruby -rwebrick -e 'WEBrick::HTTPServer.new({:DocumentRoot => "./", :Port => 8080}).start'
+}
+
+function viaproxy() {
+    local proxy_address="proxy.noc.titech.ac.jp:3128"
+    http_proxy=$proxy_address https_proxy=$proxy_address $@
+}

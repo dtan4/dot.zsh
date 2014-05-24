@@ -118,6 +118,7 @@ compdef -d gem
 compdef -d thor
 compdef -d knife
 
-[ -f $ZDOTDIR/.zshrc.prompt ] && source $ZDOTDIR/.zshrc.prompt
 [ -f $ZDOTDIR/.zshrc.alias ] && source $ZDOTDIR/.zshrc.alias
+[ -f $ZDOTDIR/.zshrc.function ] && source $ZDOTDIR/.zshrc.function
+[ -f $ZDOTDIR/.zshrc.prompt ] && source $ZDOTDIR/.zshrc.prompt
 [ -f $ZDOTDIR/.zshrc.`uname` ] && source $ZDOTDIR/.zshrc.`uname`
