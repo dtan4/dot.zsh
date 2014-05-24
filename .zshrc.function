@@ -22,6 +22,7 @@ compdef _g cdgit
 function linecount {
     find . -name "$1" | xargs wc -l
 }
+alias linecount='noglob linecount'
 
 function mkd {
     if [[ -d $1 ]]; then
