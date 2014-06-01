@@ -21,16 +21,6 @@ function chpwd() { ls --color }
 export PATH=/usr/local/appengine-java-sdk/bin:$PATH
 export PATH=/usr/local/heroku/bin:$PATH
 
-function jpkey {
-    setxkbmap -layout jp
-    xmodmap ~/.Xmodmap
-}
-
-function uskey {
-    setxkbmap -layout us
-    xmodmap ~/.Xmodmap
-}
-
 function cpufreq {
     echo $1
     sudo su -c "cpupower frequency-set -g $1"
