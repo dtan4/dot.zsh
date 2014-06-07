@@ -20,15 +20,6 @@ function precmd () {
    z --add "$(pwd -P)"
 }
 
-HISTFILE=${HOME}/.zsh_hisrory
-HISTSIZE=10000000
-SAVELIST=10000000
-setopt hist_ignore_dups
-setopt hist_ignore_all_dups
-setopt hist_save_no_dups
-setopt extended_history
-setopt share_history
-
 bindkey -e
 
 autoload history-search-end
@@ -88,6 +79,14 @@ export LESS='-R --LONG-PROMPT'
 export TERM=xterm-256color
 
 bindkey "" backward-delete-char
+
+HISTFILE=$HOME/.zsh_history
+HISTSIZE=1000000
+SAVELIST=1000000
+setopt extended_history
+setopt hist_ignore_all_dups
+setopt inc_append_history
+setopt share_history
 
 REPORTTIME=3
 
