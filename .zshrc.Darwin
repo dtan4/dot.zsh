@@ -25,3 +25,5 @@ export NOTIFY_COMMAND_COMPLETE_TIMEOUT=10
 
 export SSH_AUTH_SOCK=$(launchctl getenv SSH_AUTH_SOCK)
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+
+[[ -d $(brew --prefix)/share/zsh/site-functions ]] && fpath=($(brew --prefix)/share/zsh/site-functions $fpath)

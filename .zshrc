@@ -1,7 +1,5 @@
 fpath=("$ZDOTDIR/zsh-completions/src" $fpath)
 
-[[ -d $(brew --prefix)/share/zsh/site-functions ]] && fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
-
 source $ZDOTDIR/z/z.sh
 source $ZDOTDIR/zsh-history-substring-search/zsh-history-substring-search.zsh
 source $ZDOTDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -106,6 +104,14 @@ if which direnv > /dev/null 2>&1 ; then
     eval "$(direnv hook zsh)"
 fi
 
+for rctype in "alias" "function" "prompt" `uname`; do
+    [ -f $ZDOTDIR/.zshrc.$rctype ] && source $ZDOTDIR/.zshrc.$rctype
+done
+
+# configure completion again after all other files are loaded
+autoload -Uz compinit
+compinit
+
 # completion alias
 compdef mosh=ssh
 
@@ -116,7 +122,3 @@ compdef -d scp
 compdef -d gem
 compdef -d thor
 compdef -d knife
-
-for rctype in "alias" "function" "prompt" `uname`; do
-    [ -f $ZDOTDIR/.zshrc.$rctype ] && source $ZDOTDIR/.zshrc.$rctype
-done
