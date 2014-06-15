@@ -96,6 +96,10 @@ if [[ -d $HOME/.anyenv ]]; then
     done
 fi
 
+# settings for Go
+export GOPATH=~/.go
+export PATH=~/.go/bin:$PATH
+
 if which direnv > /dev/null 2>&1 ; then
     eval "$(direnv hook zsh)"
 fi
