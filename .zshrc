@@ -1,7 +1,6 @@
 fpath=("$ZDOTDIR/zsh-completions/src" $fpath)
 
 source $ZDOTDIR/z/z.sh
-source $ZDOTDIR/zsh-history-substring-search/zsh-history-substring-search.zsh
 source $ZDOTDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 autoload -Uz compinit
@@ -26,9 +25,6 @@ zle -N history-beginning-search-forward-end history-search-end
 bindkey "^P" history-beginning-search-backward-end
 bindkey "^N" history-beginning-search-forward-end
 bindkey "^[[Z" reverse-menu-complete  # reverse completion menu by Shift-Tab
-
-bindkey -M emacs '^P' history-substring-search-up
-bindkey -M emacs '^N' history-substring-search-down
 
 setopt auto_cd
 setopt auto_pushd
