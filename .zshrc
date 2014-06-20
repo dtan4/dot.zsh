@@ -100,8 +100,14 @@ fi
 export GOPATH=~/.go
 export PATH=~/.go/bin:$PATH
 
-if which direnv > /dev/null 2>&1 ; then
+function exists { which $1 &> /dev/null }
+
+if exists direnv; then
     eval "$(direnv hook zsh)"
+fi
+
+if exists peco; then
+    [ -f $ZDOTDIR/.zshrc.peco ] && source $ZDOTDIR/.zshrc.peco
 fi
 
 for rctype in "alias" "function" "prompt" `uname`; do
