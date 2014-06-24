@@ -26,6 +26,9 @@ alias pingg='ping www.google.com'
 alias vbreload="vagrant up; vagrant ssh -c 'sudo ln -s /opt/VBoxGuestAdditions-4.3.10/lib/VBoxGuestAdditions /usr/lib/VBoxGuestAdditions'; vagrant reload"
 alias vless='less.sh'
 
+# http://orangeclover.hatenablog.com/entry/20110201/1296511181
+alias mojibake="echo -e '\026\033c'"
+
 if [[ -x `which colordiff` ]]; then
     alias diff='colordiff -u'
 else
