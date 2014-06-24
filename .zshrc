@@ -98,7 +98,7 @@ fi
 
 # settings for Go
 export GOPATH=~/.go
-export PATH=~/.go/bin:$PATH
+export PATH=$GOPATH/bin:$PATH
 
 function exists { which $1 &> /dev/null }
 
