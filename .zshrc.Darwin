@@ -15,6 +15,7 @@ alias sed='gsed'
 ### ls after cd ###
 function chpwd() { ls -G -w }
 
+export PATH=/usr/sbin:$PATH
 export PATH=/usr/texbin:$PATH
 export PATH=~/android-sdks/platform-tools:$PATH
 
