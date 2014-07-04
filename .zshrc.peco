@@ -7,7 +7,6 @@ function peco_select_history() {
     CURSOR=$#BUFFER         # move cursor
     zle -R -c               # refresh
 }
-
 zle -N peco_select_history
 bindkey "^R" peco_select_history
 
@@ -37,3 +36,14 @@ function peco_select_directory() {
 }
 zle -N peco_select_directory
 bindkey "^X^J" peco_select_directory
+
+# http://blog.horimisli.me/entry/terminal-env-2014
+function peco-proc () {
+    local selected_pid=$(ps ax -o pid,lstart,command | peco --query "$LBUFFER" | awk '{print $1}')
+    if [ -n "$selected_pid" ]; then
+        kill $selected_pid
+    fi
+    zle -R -c
+}
+zle -N peco-proc
+bindkey "^X^P" peco-proc
