@@ -48,7 +48,9 @@ function peco-proc () {
 zle -N peco-proc
 bindkey "^X^P" peco-proc
 
-# http://naoty.hatenablog.com/entry/2014/06/30/235559
 function findmemo () {
     ag --ignore "*.pdf" -l -i $1 ~/Dropbox/memo ~/Dropbox/junk | peco | xargs less
 }
+
+# http://k0kubun.hatenablog.com/entry/2014/07/06/033336
+alias -g B='`git branch | peco | sed -e "s/^\*[ ]*//g"`'
