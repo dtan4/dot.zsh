@@ -54,4 +54,5 @@ function findmemo () {
 
 # http://k0kubun.hatenablog.com/entry/2014/07/06/033336
 alias -g B='`git branch | peco | sed -e "s/^\*[ ]*//g"`'
+alias -g C='`git log --oneline | peco | cut -d" " -f1`'
 alias -g F='`git ls-files | peco`'
