@@ -72,6 +72,8 @@ export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 export LESS='-R --LONG-PROMPT'
 export TERM=xterm-256color
 
+export EDITOR=vim
+
 bindkey "" backward-delete-char
 
 HISTFILE=$HOME/.zsh_history
