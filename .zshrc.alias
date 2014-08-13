@@ -40,4 +40,4 @@ else
 fi
 
 autoload -Uz zmv
-alias zmv='noglob zmv -W'
+alias rename='noglob zmv -W'
