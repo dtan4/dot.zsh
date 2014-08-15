@@ -87,12 +87,12 @@ setopt share_history
 REPORTTIME=3
 
 # http://mint.hateblo.jp/entry/2012/12/17/175553
-show-current-dir-as-window-name() {
-    tmux set-window-option window-status-format " #I:${PWD:t} " > /dev/null
-}
+# show-current-dir-as-window-name() {
+#     tmux set-window-option window-status-format " #I:${PWD:t} " > /dev/null
+# }
 
-show-current-dir-as-window-name
-add-zsh-hook chpwd show-current-dir-as-window-name
+# show-current-dir-as-window-name
+# add-zsh-hook chpwd show-current-dir-as-window-name
 
 if [[ -d $HOME/.anyenv ]]; then
     export PATH=~/.anyenv/bin:$PATH
