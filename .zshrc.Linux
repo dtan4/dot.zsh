@@ -2,7 +2,7 @@
 
 export LESSOPEN='| /usr/bin/source-highlight-esc.sh %s'
 
-if [ $SHLVL = 3 ]; then
+if [ $SHLVL = 1 ]; then
     tmux attach || tmux
 fi
 
