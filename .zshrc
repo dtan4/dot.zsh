@@ -139,3 +139,4 @@ compdef -d gem
 compdef -d thor
 compdef -d knife
 compdef -d gradle
+compdef -d docker
