@@ -106,6 +106,8 @@ if [[ -d $HOME/.anyenv ]]; then
     done
 fi
 
+export _JAVA_OPTIONS="-Dfile.encoding=UTF-8"
+
 # settings for Go
 export GOPATH=~/.go
 export PATH=$GOPATH/bin:$PATH
