@@ -54,19 +54,19 @@ function rprompt-ruby-version {
 
     if which rbenv &> /dev/null; then
         version=`rbenv version | sed -e "s/ (set.*$//"`
-        echo "[%{${fg[white]}%}$version%{$reset_color%}]"
+        echo "[%{${fg[magenta]}%}$version%{$reset_color%}]"
     fi
 }
 
 setopt prompt_subst
-PROMPT="%{${fg[magenta]}%}%n@%m ${fg[yellow]}%}%(5~,%-2~/.../%2~,%~)%{${reset_color}%} [%D{%Y-%m-%d %T}] [%h]
+PROMPT="%{${fg[magenta]}%}%n@%m ${fg[yellow]}%}%(5~,%-2~/.../%2~,%~) ${fg[white]}%}[%D{%y-%m-%d %T}]%{${reset_color}%}
 % "
 precmd(){
-    PROMPT="%{${fg[magenta]}%}%n@%m ${fg[yellow]}%}%(5~,%-2~/.../%2~,%~)%{${reset_color}%} [%D{%Y-%m-%d %T}] [%h]
+    PROMPT="%{${fg[magenta]}%}%n@%m ${fg[yellow]}%}%(5~,%-2~/.../%2~,%~) ${fg[white]}%}[%D{%y-%m-%d %T}]%{${reset_color}%}
 %{%(?.${reset_color}.${fg[red]})%}%#%{${reset_color}%} "
 }
 PROMPT2='[%n]> '
-RPROMPT='`rprompt-ruby-version``rprompt-git-not-pushed``rprompt-git-stash``rprompt-git-current-branch`'
+RPROMPT='`rprompt-git-not-pushed``rprompt-git-stash``rprompt-git-current-branch``rprompt-ruby-version`'
 
 case "${TERM}" in
     kterm*|xterm)
