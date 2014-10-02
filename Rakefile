@@ -29,5 +29,8 @@ end
 
 desc "Update submodules"
 task :update_submodules do
-  sh %(git submodule update)
+  Dir["*/"].map { |dir| File.join(ZDOTDIR, dir[0..-1]) }.each do |dir|
+    Dir.chdir(dir)
+    sh %(git pull origin master)
+  end
 end
