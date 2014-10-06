@@ -48,9 +48,8 @@ function viaproxy() {
 
 # http://shinh.hatenablog.com/entry/20080424/1208971521
 function clear-screen-rehash() {
-        zle clear-screen
-        rehash
-        zle reset-prompt
+    zle clear-screen
+    rehash
 }
 zle -N clear-screen-rehash
 bindkey '^L' clear-screen-rehash
