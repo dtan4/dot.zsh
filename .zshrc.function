@@ -45,3 +45,12 @@ function viaproxy() {
     local proxy_address="proxy.noc.titech.ac.jp:3128"
     http_proxy=$proxy_address https_proxy=$proxy_address $@
 }
+
+# http://shinh.hatenablog.com/entry/20080424/1208971521
+function clear-screen-rehash() {
+        zle clear-screen
+        rehash
+        zle reset-prompt
+}
+zle -N clear-screen-rehash
+bindkey '^L' clear-screen-rehash
