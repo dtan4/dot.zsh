@@ -140,6 +140,7 @@ compdef -d scp
 compdef -d gem
 compdef -d thor
 compdef -d knife
+compdef -d kitchen
 compdef -d gradle
 compdef -d docker
 compdef -d mvn
