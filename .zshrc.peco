@@ -56,4 +56,5 @@ function findmemo () {
 alias -g B='`git branch | peco | sed -e "s/^\*[ ]*//g"`'
 alias -g C='`git log --oneline --branches | peco | cut -d" " -f1`'
 alias -g F='`git ls-files | peco`'
+alias -g P='`docker ps | peco | cut -d" " -f1`'
 alias -g R='`git reflog | peco | cut -d" " -f1`'
