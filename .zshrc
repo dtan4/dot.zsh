@@ -144,3 +144,4 @@ compdef -d kitchen
 compdef -d gradle
 compdef -d docker
 compdef -d mvn
+compdef -d mysql
