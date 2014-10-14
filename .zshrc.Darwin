@@ -26,4 +26,10 @@ export NOTIFY_COMMAND_COMPLETE_TIMEOUT=10
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 export DOCKER_HOST=tcp://192.168.59.103:2375
 
+# http://qiita.com/nyamage/items/62a3de46cb26d5ce1087
+function denter() {
+    boot2docker ssh '[ -f /var/lib/boot2docker/nsenter ] || docker run --rm -v /var/lib/boot2docker/:/target jpetazzo/nsenter'
+    boot2docker ssh -t sudo /var/lib/boot2docker/docker-enter "$@"
+}
+
 [[ -d $(brew --prefix)/share/zsh/site-functions ]] && fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
