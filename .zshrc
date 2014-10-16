@@ -122,7 +122,7 @@ if exists peco; then
     [ -f $ZDOTDIR/.zshrc.peco ] && source $ZDOTDIR/.zshrc.peco
 fi
 
-for rctype in "alias" "function" "prompt" `uname`; do
+for rctype in "alias" "function" "prompt" "local" `uname`; do
     [ -f $ZDOTDIR/.zshrc.$rctype ] && source $ZDOTDIR/.zshrc.$rctype
 done
 
