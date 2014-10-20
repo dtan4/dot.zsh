@@ -29,6 +29,8 @@ export DOCKER_HOST=tcp://192.168.59.103:2376
 export DOCKER_CERT_PATH=$HOME/.boot2docker/certs/boot2docker-vm
 export DOCKER_TLS_VERIFY=1
 
+export GROOVY_HOME=/usr/local/opt/groovy/libexec
+
 # http://qiita.com/nyamage/items/62a3de46cb26d5ce1087
 function denter() {
     boot2docker ssh '[ -f /var/lib/boot2docker/nsenter ] || docker run --rm -v /var/lib/boot2docker/:/target jpetazzo/nsenter'
