@@ -31,6 +31,7 @@ setopt auto_pushd
 setopt list_packed
 setopt nolistbeep
 setopt noautoremoveslash
+setopt noclobber # stop overwrite redirect
 setopt nonomatch
 setopt correct
 
