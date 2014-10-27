@@ -7,8 +7,8 @@ if [ $SHLVL = 1 ]; then
 fi
 
 alias ls="ls -G -w"
-alias emacs='/usr/local/Cellar/emacs/24.3/bin/emacs'
-alias emacsclient='/usr/local/Cellar/emacs/24.3/bin/emacsclient'
+alias emacs='/usr/local/Cellar/emacs/24.4/bin/emacs'
+alias emacsclient='/usr/local/Cellar/emacs/24.4/bin/emacsclient'
 alias v8="rlwrap v8"
 alias sed='gsed'
 
