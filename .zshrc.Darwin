@@ -37,4 +37,14 @@ function denter() {
     boot2docker ssh -t sudo /var/lib/boot2docker/docker-enter "$@"
 }
 
+function wifi() {
+    name=`/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | egrep "agrCtlRSSI|state|lastTxRate| SSID" | cut -d: -f2 | tr "\\n" ";" | sed 's/^[ ]//g' | cut -d";" -f4-4 | cut -d" " -f2-`
+
+    if [ "$name" == "" ]; then
+        echo "(WIFI off)"
+    else
+        echo $name
+    fi
+}
+
 [[ -d $(brew --prefix)/share/zsh/site-functions ]] && fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
