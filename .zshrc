@@ -35,10 +35,10 @@ setopt noclobber # stop overwrite redirect
 setopt nonomatch
 setopt correct
 
-autoload predict-on
+# autoload predict-on
 # predict-on
-zle-line-init() { predict-on }
-zle -N zle-line-init
+# zle-line-init() { predict-on }
+# zle -N zle-line-init
 
 autoload -Uz select-word-style
 select-word-style default
