@@ -65,6 +65,8 @@ zstyle ':completion:*' list-separator '-->'
 zstyle ':completion:*:manuals' separate-sections true
 zstyle ':completion:*:*files' ignored-patterns '*?.o' '*?~' '*\#'
 zstyle ':completion:*' ignore-parents parent pwd ..
+# http://gihyo.jp/dev/serial/01/zsh-book/0005
+zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' '+m:{A-Z}={a-z}'
 zstyle ':completion:*' menu select
 
 # Less Colors for Man Pages
