@@ -6,6 +6,7 @@ if [ $SHLVL = 1 ]; then
     tmux attach || tmux
 fi
 
+alias b2d="boot2docker"
 alias ls="ls -G -w"
 alias emacs='/usr/local/Cellar/emacs/24.4/bin/emacs'
 alias emacsclient='/usr/local/Cellar/emacs/24.4/bin/emacsclient'
