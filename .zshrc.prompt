@@ -60,10 +60,10 @@ function rprompt-ruby-version {
 
 setopt prompt_subst
 PROMPT="%{${fg[magenta]}%}%n@%m ${fg[yellow]}%}%(5~,%-2~/.../%2~,%~) ${fg[white]}%}[%D{%y-%m-%d %T}]%{${reset_color}%}
-% "
+$ "
 precmd(){
     PROMPT="%{${fg[magenta]}%}%n@%m ${fg[yellow]}%}%(5~,%-2~/.../%2~,%~) ${fg[white]}%}[%D{%y-%m-%d %T}]%{${reset_color}%}
-%{%(?.${reset_color}.${fg[red]})%}%#%{${reset_color}%} "
+%{%(?.${reset_color}.${fg[red]})%}$%{${reset_color}%} "
 }
 PROMPT2='[%n]> '
 RPROMPT='`rprompt-git-not-pushed``rprompt-git-stash``rprompt-git-current-branch``rprompt-ruby-version`'
