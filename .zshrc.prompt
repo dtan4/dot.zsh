@@ -53,14 +53,13 @@ function rprompt-ruby-version {
     local version setting
 
     if which rbenv &> /dev/null; then
-        if [[ "`rbenv version | grep '.rbenv/version'`" = "" ]];then
-            setting="(L)"
-        else
-            setting=""
-        fi
-
         version=`rbenv version | sed -e "s/ (set.*$//"`
-        echo "[%{${fg[magenta]}%}$version%{${fg[yellow]}%}$setting%{$reset_color%}]"
+
+        if [[ "`rbenv version | grep '.rbenv/version'`" = "" ]];then
+            echo "[%{${fg[yellow]}%}$version%{$reset_color%}]"
+        else
+            echo "[%{${fg[magenta]}%}$version%{$reset_color%}]"
+        fi
     fi
 }
 
