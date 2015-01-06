@@ -143,7 +143,6 @@ compinit
 compdef mosh=ssh
 
 # disable completion
-compdef -d rake
 compdef -d npm
 compdef -d scp
 compdef -d gem
