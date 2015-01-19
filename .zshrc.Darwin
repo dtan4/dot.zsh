@@ -8,8 +8,8 @@ fi
 
 alias b2d="boot2docker"
 alias ls="ls -G -w"
-alias emacs='/usr/local/Cellar/emacs/24.4/bin/emacs'
-alias emacsclient='/usr/local/Cellar/emacs/24.4/bin/emacsclient'
+alias emacs='/usr/local/opt/emacs-mac/bin/emacs'
+alias emacsclient='/usr/local/opt/emacs-mac/bin/emacsclient'
 alias v8="rlwrap v8"
 alias vless='/usr/local/share/vim/vim74/macros/less.sh'
 alias sed='gsed'
