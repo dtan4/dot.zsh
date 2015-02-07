@@ -5,15 +5,15 @@ task default: "update"
 
 desc "Install .zsh"
 task :install => [
-                  :init_submodules,
-                  :setup
-                 ] do
+  "sudmodule:init",
+  "setup"
+] do
 end
 
 desc "Update .zsh"
 task :update => [
-                 :update_submodules
-                ] do
+  "submodule:update"
+] do
 end
 
 desc "Setup .zsh"
@@ -22,15 +22,17 @@ task :setup do
   sh %(echo 'export ZDOTDIR=#{ZDOTDIR}' >> #{ZSHENV}) unless File.exists?(ZSHENV)
 end
 
-desc "Install submodules"
-task :init_submodules do
-  sh %(git submodule update --init)
-end
+namespace :submodule do
+  desc "Install submodules"
+  task :init do
+    sh %(git submodule update --init)
+  end
 
-desc "Update submodules"
-task :update_submodules do
-  Dir["*/"].map { |dir| File.join(ZDOTDIR, dir[0..-1]) }.each do |dir|
-    Dir.chdir(dir)
-    sh %(git pull origin master)
+  desc "Update submodules"
+  task :update do
+    Dir["*/"].map { |dir| File.join(ZDOTDIR, dir[0..-1]) }.each do |dir|
+      Dir.chdir(dir)
+      sh %(git pull origin master)
+    end
   end
 end
