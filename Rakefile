@@ -5,7 +5,7 @@ task default: "update"
 
 desc "Install .zsh"
 task :install => [
-  "sudmodule:init",
+  "submodule:init",
   "setup"
 ] do
 end
