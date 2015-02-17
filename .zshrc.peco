@@ -52,6 +52,10 @@ function findmemo () {
     ag --ignore "*.pdf" -l -i $1 ~/Dropbox/memo ~/Dropbox/junk | peco | xargs less
 }
 
+function httpst() {
+    ruby -r rack/utils -e 'Rack::Utils::HTTP_STATUS_CODES.each_pair { |code, desc| puts "#{code} #{desc}" }' | peco
+}
+
 # http://k0kubun.hatenablog.com/entry/2014/07/06/033336
 alias -g B='`git branch | peco | sed -e "s/^\*[ ]*//g"`'
 alias -g C='`git log --oneline --branches | peco | cut -d" " -f1`'
