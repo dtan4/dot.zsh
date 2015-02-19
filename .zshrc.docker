@@ -1,0 +1,8 @@
+# -*- mode: sh --*
+
+alias dr='docker run'
+alias drit='docker run -i -t'
+
+function dbu() {
+    docker build -t $1 .
+}
