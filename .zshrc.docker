@@ -6,3 +6,9 @@ alias drit='docker run -i -t'
 function dbu() {
     docker build -t $1 .
 }
+
+# http://qiita.com/rosylilly/items/08f4c0771e2ca92a72aa
+function docker-clean() {
+    docker rm $(docker ps -a -q)
+    docker rmi $(docker images -a | grep none | awk '{print $3}')
+}
