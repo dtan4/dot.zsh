@@ -33,6 +33,10 @@ function mkd {
     fi
 }
 
+function nsum {
+    ruby -e 'puts ARGV.inject(0) { |sum, num| sum += num.to_i; sum }'
+}
+
 function pdfgrep {
     find . -name '*.pdf.txt' | xargs grep -i $1 2> /dev/null | sed -e 's/\.pdf\.txt/\.pdf/g'
 }
