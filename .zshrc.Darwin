@@ -50,4 +50,8 @@ function wifi() {
     fi
 }
 
+function itpp() {
+    osascript -e 'tell application "iTunes" to playpause'
+}
+
 [[ -d $(brew --prefix)/share/zsh/site-functions ]] && fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
