@@ -77,10 +77,6 @@ zle -N clear-screen-rehash
 bindkey '^L' clear-screen-rehash
 
 # http://qiita.com/yuyuchu3333/items/b10542db482c3ac8b059
-function chpwd() {
-    ls_abbrev
-}
-
 function ls_abbrev() {
     if [[ ! -r $PWD ]]; then
         return
@@ -111,6 +107,10 @@ function ls_abbrev() {
     else
         echo "$ls_result"
     fi
+}
+
+function chpwd() {
+    ls_abbrev
 }
 
 function do_enter() {
