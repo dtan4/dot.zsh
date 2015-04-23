@@ -15,9 +15,6 @@ alias cloned='xrandr --output HDMI1 --auto --same-as eDP1'
 alias singled='xrandr --output HDMI1 --off'
 alias battery="acpi -b | cut -d' ' -f3,4 | sed 's/,$//g'"
 
-### ls after cd ###
-function chpwd() { ls --color }
-
 export PATH=/usr/local/appengine-java-sdk/bin:$PATH
 export PATH=/usr/local/heroku/bin:$PATH
 
