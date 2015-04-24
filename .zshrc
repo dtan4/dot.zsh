@@ -118,7 +118,7 @@ fi
 export _JAVA_OPTIONS="-Dfile.encoding=UTF-8"
 
 # settings for Go
-export GOPATH=~/.go
+export GOPATH=$HOME
 export PATH=$GOPATH/bin:$PATH
 
 function exists { which $1 &> /dev/null }
