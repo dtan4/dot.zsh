@@ -13,6 +13,7 @@ alias cdtmp='cd ~/tmp'
 alias cddrop='cd ~/Dropbox'
 alias cdarc='cd ~/Dropbox/Archives'
 alias cdmemo='cd ~/Dropbox/memo'
+alias cdgit='cd ~/src/github.com/dtan4'
 
 # extend existed command
 alias be='bundle exec'
