@@ -129,9 +129,14 @@ for rctype in "alias" "docker" "function" "prompt" "local" `uname`; do
     [ -f $ZDOTDIR/.zshrc.$rctype ] && source $ZDOTDIR/.zshrc.$rctype
 done
 
-if exists tmux; then
+function preexec() {
+    cmd=$(echo $1 | cut -d' ' -f1 )
+    tmux rename-window $cmd
+}
+
+function precmd() {
     tmux rename-window "zsh:$PWD:t"
-fi
+}
 
 # configure completion again after all other files are loaded
 autoload -Uz compinit
