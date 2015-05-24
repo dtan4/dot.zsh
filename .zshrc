@@ -130,8 +130,8 @@ for rctype in "alias" "docker" "function" "prompt" "local" `uname`; do
 done
 
 function preexec() {
-    cmd=$(echo $1 | cut -d' ' -f1 )
-    tmux rename-window $cmd
+    cmd=$(echo $1 | cut -d' ' -f1)
+    tmux rename-window "$cmd:$PWD:t"
 }
 
 function precmd() {
