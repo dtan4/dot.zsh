@@ -4,6 +4,7 @@ export LESSOPEN='| /usr/bin/source-highlight-esc.sh %s'
 
 if [ $SHLVL = 1 ]; then
     tmux attach || tmux
+    tmux rename-window "zsh:$PWD:t"
 fi
 
 alias ls='ls --color=auto'

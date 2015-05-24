@@ -95,13 +95,7 @@ setopt share_history
 
 REPORTTIME=3
 
-# http://qiita.com/usobuku/items/fce0f69586d82f963cbb
-function rename_tmux_window() {
-    tmux rename-window "zsh/$(basename `pwd`)"
-}
-
 autoload -Uz add-zsh-hook
-add-zsh-hook chpwd rename_tmux_window
 
 if [[ -d $HOME/.anyenv ]]; then
     export PATH=~/.anyenv/bin:$PATH
@@ -134,6 +128,10 @@ fi
 for rctype in "alias" "docker" "function" "prompt" "local" `uname`; do
     [ -f $ZDOTDIR/.zshrc.$rctype ] && source $ZDOTDIR/.zshrc.$rctype
 done
+
+if exists tmux; then
+    tmux rename-window "zsh:$PWD:t"
+fi
 
 # configure completion again after all other files are loaded
 autoload -Uz compinit

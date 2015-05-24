@@ -4,6 +4,7 @@ export LESSOPEN='| /usr/local/bin/src-hilite-lesspipe.sh %s'
 
 if [ $SHLVL = 1 ]; then
     tmux attach || tmux
+    tmux rename-window "zsh:$PWD:t"
 fi
 
 alias b2d="boot2docker"
