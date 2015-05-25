@@ -9,6 +9,8 @@ compinit
 autoload colors
 colors
 
+autoload -Uz add-zsh-hook
+
 export LANG=ja_JP.UTF-8
 export PATH=/usr/local/bin:/usr/local/sbin:/sbin:$PATH
 
@@ -95,8 +97,6 @@ setopt share_history
 
 REPORTTIME=3
 
-autoload -Uz add-zsh-hook
-
 if [[ -d $HOME/.anyenv ]]; then
     export PATH=~/.anyenv/bin:$PATH
     export PATH=~/.anyenv/shims:$PATH
@@ -129,14 +129,18 @@ for rctype in "alias" "docker" "function" "prompt" "local" `uname`; do
     [ -f $ZDOTDIR/.zshrc.$rctype ] && source $ZDOTDIR/.zshrc.$rctype
 done
 
-function preexec() {
+function tmux-show-command() {
     cmd=$(echo $1 | cut -d' ' -f1)
     tmux rename-window "$cmd:$PWD:t"
 }
 
-function precmd() {
+add-zsh-hook preexec tmux-show-command
+
+function tmux-show-pwd() {
     tmux rename-window "zsh:$PWD:t"
 }
+
+add-zsh-hook precmd tmux-show-pwd
 
 # configure completion again after all other files are loaded
 autoload -Uz compinit

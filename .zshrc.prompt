@@ -63,13 +63,16 @@ function rprompt-ruby-version {
     fi
 }
 
-setopt prompt_subst
-PROMPT="%{${fg[magenta]}%}%n@%m ${fg[yellow]}%}%(5~,%-2~/.../%2~,%~) ${fg[white]}%}[%D{%y-%m-%d %T}]%{${reset_color}%} `rprompt-ruby-version` `rprompt-git-current-branch``rprompt-git-not-pushed``rprompt-git-stash`
-$ "
-precmd(){
+function refresh-prompt {
     PROMPT="%{${fg[magenta]}%}%n@%m ${fg[yellow]}%}%(5~,%-2~/.../%2~,%~) ${fg[white]}%}[%D{%y-%m-%d %T}]%{${reset_color}%} `rprompt-ruby-version` `rprompt-git-current-branch``rprompt-git-not-pushed``rprompt-git-stash`
 %{%(?.${reset_color}.${fg[red]})%}$%{${reset_color}%} "
 }
+
+add-zsh-hook precmd refresh-prompt
+
+setopt prompt_subst
+PROMPT="%{${fg[magenta]}%}%n@%m ${fg[yellow]}%}%(5~,%-2~/.../%2~,%~) ${fg[white]}%}[%D{%y-%m-%d %T}]%{${reset_color}%} `rprompt-ruby-version` `rprompt-git-current-branch``rprompt-git-not-pushed``rprompt-git-stash`
+$ "
 PROMPT2='[%n]> '
 
 case "${TERM}" in
