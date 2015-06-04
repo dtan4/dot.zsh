@@ -114,3 +114,7 @@ function chpwd() {
     # http://qiita.com/usobuku/items/fce0f69586d82f963cbb
     tmux rename-window "zsh:$PWD:t"
 }
+
+function netcd() {
+    curl -w "\n" https://discovery.etcd.io/new
+}
