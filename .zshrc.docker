@@ -1,13 +1,6 @@
 # -*- mode: sh -*-
 
-function d() {
-    if [ `uname` == "Darwin" -a `boot2docker status` != "running" ]; then
-        boot2docker up
-    fi
-
-    docker $@
-}
-
+alias d='docker'
 alias dr='docker run'
 alias drit='docker run -i -t'
 
