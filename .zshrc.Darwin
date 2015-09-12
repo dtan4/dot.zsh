@@ -33,6 +33,16 @@ fi
 
 export GROOVY_HOME=/usr/local/opt/groovy/libexec
 
+function docker-start() {
+    if [[ -n $(docker-machine ls | grep docker-vm | grep Running) ]]; then
+        echo "docker-machine is already running!"
+        return
+    fi
+
+    docker-machine start docker-vm
+    eval $(docker-machine env docker-vm)
+}
+
 function wifi() {
     name=`/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | egrep "agrCtlRSSI|state|lastTxRate| SSID" | cut -d: -f2 | tr "\\n" ";" | sed 's/^[ ]//g' | cut -d";" -f4-4 | cut -d" " -f2-`
 
