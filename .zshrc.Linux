@@ -2,10 +2,6 @@
 
 export LESSOPEN='| /usr/bin/source-highlight-esc.sh %s'
 
-if [ $SHLVL = 1 ]; then
-    tmux attach || tmux
-fi
-
 alias ls='ls --color=auto'
 alias open="xdg-open"
 alias eclipse='MALLOC_CHECK_=0 /usr/local/eclipse/eclipse'

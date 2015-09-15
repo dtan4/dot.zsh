@@ -2,10 +2,6 @@
 
 export LESSOPEN='| /usr/local/bin/src-hilite-lesspipe.sh %s'
 
-if [ $SHLVL = 1 ]; then
-    tmux attach || tmux
-fi
-
 alias b2d="boot2docker"
 alias ls="ls -G -w"
 alias emacs='/usr/local/opt/emacs-mac/bin/emacs'
