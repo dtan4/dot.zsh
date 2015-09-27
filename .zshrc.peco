@@ -78,7 +78,7 @@ function ec2-cssh() {
     if [ -x `which envchain` ]; then
         ip_addresses=$(ec2s $3 | awk '{ print $1 }' | tr '\n' ' ')
     else
-        ip_addresses=$(ec2s | awk '{ print $1 }' | tr '\n' ' ' )
+        ip_addresses=$(ec2s | awk '{ print $1 }' | tr '\n' ' ')
     fi
 
     if [ -n $ip_addresses ]; then
