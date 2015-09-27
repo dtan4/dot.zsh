@@ -63,7 +63,7 @@ function httpst() {
 function ec2s() {
     local jq_query='.Reservations[] | .Instances[] | select(.State.Name != "terminated") | select(has("PublicIpAddress")) | [.PublicIpAddress,.PrivateIpAddress,.State.Name,(.Tags[] | select(.Key == "Name") | .Value // "")] | join("\t")'
 
-    if type envchain > /dev/null 2&>1; then
+    if type envchain > /dev/null 2>&1; then
         envchain $1 aws ec2 describe-instances | jq -r $jq_query | peco
     else
         aws ec2 describe-instances | jq -r $jq_query | peco
@@ -75,7 +75,7 @@ function ec2-cssh() {
     local ssh_key=$2
     local ip_addresses
 
-    if type envchain > /dev/null 2&>1; then
+    if type envchain > /dev/null 2>&1; then
         ip_addresses=$(ec2s $3 | awk '{ print $1 }' | tr '\n' ' ')
     else
         ip_addresses=$(ec2s | awk '{ print $1 }' | tr '\n' ' ')
