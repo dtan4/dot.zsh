@@ -60,6 +60,32 @@ function httpst() {
     ruby -r rack/utils -e 'Rack::Utils::HTTP_STATUS_CODES.each_pair { |code, desc| puts "#{code} #{desc}" }' | peco
 }
 
+function ec2s() {
+    local jq_query='.Reservations[] | .Instances[] | select(.State.Name != "terminated") | select(has("PublicIpAddress")) | [.PublicIpAddress,.PrivateIpAddress,.State.Name,(.Tags[] | select(.Key == "Name") | .Value // "")] | join("\t")'
+
+    if [ -x `which envchain` ]; then
+        envchain $1 aws ec2 describe-instances | jq -r $jq_query | peco
+    else
+        aws ec2 describe-instances | jq -r $jq_query | peco
+    fi
+}
+
+function ec2-cssh() {
+    local ssh_user=$1
+    local ssh_key=$2
+    local ip_addresses
+
+    if [ -x `which envchain` ]; then
+        ip_addresses=$(ec2s $3 | awk '{ print $1 }' | tr '\n' ' ')
+    else
+        ip_addresses=$(ec2s | awk '{ print $1 }' | tr '\n' ' ' )
+    fi
+
+    if [ -n $ip_addresses ]; then
+        sh -c "tmux-cssh -u $ssh_user -i $ssh_key $ip_addresses"
+    fi
+}
+
 # http://k0kubun.hatenablog.com/entry/2014/07/06/033336
 alias -g B='`git branch | peco | sed -e "s/^\*[ ]*//g"`'
 alias -g C='`git log --oneline --branches | peco | cut -d" " -f1`'
