@@ -111,8 +111,11 @@ function ls_abbrev() {
 
 function chpwd() {
     ls_abbrev
-    # http://qiita.com/usobuku/items/fce0f69586d82f963cbb
-    tmux rename-window "zsh:$PWD:t"
+
+    if [ -n "$TMUX" ]; then
+        # http://qiita.com/usobuku/items/fce0f69586d82f963cbb
+        tmux rename-window "zsh:$PWD:t"
+    fi
 }
 
 function netcd() {

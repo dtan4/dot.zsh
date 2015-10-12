@@ -130,14 +130,18 @@ for rctype in "alias" "docker" "function" "prompt" "local" `uname`; do
 done
 
 function tmux-show-command() {
-    cmd=$(echo $1 | cut -d' ' -f1)
-    tmux rename-window "$cmd:$PWD:t"
+    if [ -n "$TMUX" ]; then
+        cmd=$(echo $1 | cut -d' ' -f1)
+        tmux rename-window "$cmd:$PWD:t"
+    fi
 }
 
 add-zsh-hook preexec tmux-show-command
 
 function tmux-show-pwd() {
-    tmux rename-window "zsh:$PWD:t"
+    if [ -n "$TMUX" ]; then
+        tmux rename-window "zsh:$PWD:t"
+    fi
 }
 
 add-zsh-hook precmd tmux-show-pwd
