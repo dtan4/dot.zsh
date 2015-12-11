@@ -46,7 +46,7 @@ function rprompt-git-current-branch {
         color=${fg[red]}
     fi
 
-    commit_hash=`git log --oneline | head -n1 | cut -d' ' -f1`
+    commit_hash=`git log --oneline 2>/dev/null | head -n1 | cut -d' ' -f1`
 
     echo "[%{$color%}$name%{$reset_color%} $commit_hash]"
 }
