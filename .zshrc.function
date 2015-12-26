@@ -19,6 +19,18 @@ function _g {
 
 compdef _g cdgit
 
+function e {
+    local args
+
+    if [[ $# -eq 2 ]]; then
+        args="+$2 $1"
+    else
+        args=`echo $1 | sed -E "s/([^:]+):([0-9:]+)/+\2 \1/g"`
+    fi
+
+    eval "emacsclient -n $args"
+}
+
 function ec2info {
     aws ec2 describe-instances --instance-ids $1 | jq '.Reservations[].Instances[] | .NetworkInterfaces[].PrivateIpAddresses[], .Tags[]'
 }
