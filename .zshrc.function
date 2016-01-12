@@ -133,3 +133,7 @@ function chpwd() {
 function netcd() {
     curl -w "\n" https://discovery.etcd.io/new
 }
+
+function cleanup() {
+    find . -name '#*#' -type f -exec rm {} +
+}
