@@ -6,6 +6,8 @@ alias dm='docker-machine'
 alias dr='docker run'
 alias drit='docker run -i -t'
 
+alias alpine='docker run -it --rm alpine:3.3 /bin/sh'
+
 function dbu() {
     docker build -t $1 .
 }
