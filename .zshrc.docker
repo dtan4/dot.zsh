@@ -7,6 +7,8 @@ alias dr='docker run'
 alias drit='docker run -i -t'
 
 alias alpine='docker run -it --rm alpine:3.3 /bin/sh'
+alias centos='docker run -it --rm centos:7 /bin/bash'
+alias ubuntu='docker run -it --rm ubuntu:14.04 /bin/bash'
 
 function dbu() {
     docker build -t $1 .
