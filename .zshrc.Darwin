@@ -8,7 +8,10 @@ alias emacs='/usr/local/opt/emacs-mac/bin/emacs'
 alias emacsclient='/usr/local/opt/emacs-mac/bin/emacsclient'
 alias v8="rlwrap v8"
 alias vless='/usr/local/share/vim/vim74/macros/less.sh'
-alias sed='gsed'
+
+if [[ -x $(which gsed) ]]; then
+  alias sed='gsed'
+fi
 
 export PATH=/usr/sbin:$PATH
 export PATH=/usr/texbin:$PATH
