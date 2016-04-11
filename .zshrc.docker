@@ -15,11 +15,11 @@ function dbu() {
 }
 
 function dms() {
-  if [[ -z $(docker-machine ls | grep docker-vm | grep Running) ]]; then
-    docker-machine start docker-vm
+  if [[ -z $(docker-machine ls | grep default | grep Running) ]]; then
+    docker-machine start default
   fi
 
-  eval $(docker-machine env docker-vm)
+  eval $(docker-machine env default)
 }
 
 # http://qiita.com/rosylilly/items/08f4c0771e2ca92a72aa
