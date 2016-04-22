@@ -25,23 +25,23 @@ export SYS_NOTIFIER="/usr/local/bin/terminal-notifier"
 export NOTIFY_COMMAND_COMPLETE_TIMEOUT=10
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
-if [[ -x $(which docker-machine) ]]; then
-    if [[ -n $(docker-machine ls | grep default | grep Running) ]]; then
-        eval $(docker-machine env default)
-    fi
-fi
+# if [[ -x $(which docker-machine) ]]; then
+#     if [[ -n $(docker-machine ls | grep default | grep Running) ]]; then
+#         eval $(docker-machine env default)
+#     fi
+# fi
 
 export GROOVY_HOME=/usr/local/opt/groovy/libexec
 
-function docker-start() {
-    if [[ -n $(docker-machine ls | grep default | grep Running) ]]; then
-        echo "docker-machine is already running!"
-        return
-    fi
+# function docker-start() {
+#     if [[ -n $(docker-machine ls | grep default | grep Running) ]]; then
+#         echo "docker-machine is already running!"
+#         return
+#     fi
 
-    docker-machine start default
-    eval $(docker-machine env default)
-}
+#     docker-machine start default
+#     eval $(docker-machine env default)
+# }
 
 function wifi() {
     name=`/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | egrep "agrCtlRSSI|state|lastTxRate| SSID" | cut -d: -f2 | tr "\\n" ";" | sed 's/^[ ]//g' | cut -d";" -f4-4 | cut -d" " -f2-`
