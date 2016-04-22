@@ -131,7 +131,15 @@ function chpwd() {
 }
 
 function netcd() {
-    curl -w "\n" https://discovery.etcd.io/new
+  local url
+
+  if [ $# == 1 ]; then
+    url=https://discovery.etcd.io/new?size=$1
+  else
+    url=https://discovery.etcd.io/new
+  fi
+
+  curl -w "\n" $url
 }
 
 function cleanup() {
