@@ -139,7 +139,7 @@ function netcd() {
     url=https://discovery.etcd.io/new
   fi
 
-  curl -w "\n" $url
+  curl $url
 }
 
 function cleanup() {
