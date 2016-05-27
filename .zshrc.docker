@@ -25,5 +25,5 @@ function dms() {
 # http://qiita.com/rosylilly/items/08f4c0771e2ca92a72aa
 function docker-clean() {
     docker rm $(docker ps -a -q)
-    docker rmi $(docker images -a | grep none | awk '{print $3}')
+    docker rmi $(docker images -f "dangling=true" -q)
 }
