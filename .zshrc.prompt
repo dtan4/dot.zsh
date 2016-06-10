@@ -55,6 +55,20 @@ function rprompt-git-current-branch {
     fi
 }
 
+function rprompt-node-version {
+    local version setting
+
+    if which rbenv &> /dev/null; then
+        version=`ndenv version | sed -e "s/ (set.*$//"`
+
+        if [[ "`ndenv version | grep '.ndenv/version'`" = "" ]];then
+            echo "[n %{${fg[yellow]}%}$version%{$reset_color%}]"
+        else
+            echo "[n %{${fg[magenta]}%}$version%{$reset_color%}]"
+        fi
+    fi
+}
+
 function rprompt-ruby-version {
     local version setting
 
@@ -62,22 +76,22 @@ function rprompt-ruby-version {
         version=`rbenv version | sed -e "s/ (set.*$//"`
 
         if [[ "`rbenv version | grep '.rbenv/version'`" = "" ]];then
-            echo "[%{${fg[yellow]}%}$version%{$reset_color%}]"
+            echo "[r %{${fg[yellow]}%}$version%{$reset_color%}]"
         else
-            echo "[%{${fg[magenta]}%}$version%{$reset_color%}]"
+            echo "[r %{${fg[magenta]}%}$version%{$reset_color%}]"
         fi
     fi
 }
 
 function refresh-prompt {
-    PROMPT="%{${fg[magenta]}%}%n ${fg[yellow]}%}%(5~,%-2~/.../%2~,%~) ${fg[white]}%}[%D{%y-%m-%d %T}]%{${reset_color}%} `rprompt-ruby-version` `rprompt-git-current-branch``rprompt-git-not-pushed``rprompt-git-stash`
+    PROMPT="%{${fg[magenta]}%}%n ${fg[yellow]}%}%(5~,%-2~/.../%2~,%~) ${fg[white]}%}[%D{%y-%m-%d %T}]%{${reset_color}%} `rprompt-node-version` `rprompt-ruby-version` `rprompt-git-current-branch``rprompt-git-not-pushed``rprompt-git-stash`
 %{%(?.${reset_color}.${fg[red]})%}$%{${reset_color}%} "
 }
 
 add-zsh-hook precmd refresh-prompt
 
 setopt prompt_subst
-PROMPT="%{${fg[magenta]}%}%n ${fg[yellow]}%}%(5~,%-2~/.../%2~,%~) ${fg[white]}%}[%D{%y-%m-%d %T}]%{${reset_color}%} `rprompt-ruby-version` `rprompt-git-current-branch``rprompt-git-not-pushed``rprompt-git-stash`
+PROMPT="%{${fg[magenta]}%}%n ${fg[yellow]}%}%(5~,%-2~/.../%2~,%~) ${fg[white]}%}[%D{%y-%m-%d %T}]%{${reset_color}%} `rprompt-node-version` `rprompt-ruby-version` `rprompt-git-current-branch``rprompt-git-not-pushed``rprompt-git-stash`
 $ "
 PROMPT2='[%n]> '
 
