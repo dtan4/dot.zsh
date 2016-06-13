@@ -62,9 +62,9 @@ function rprompt-node-version {
         version=`ndenv version | sed -e "s/ (set.*$//"`
 
         if [[ "`ndenv version | grep '.ndenv/version'`" = "" ]];then
-            echo "[n %{${fg[yellow]}%}$version%{$reset_color%}]"
+            echo "[js %{${fg[yellow]}%}$version%{$reset_color%}]"
         else
-            echo "[n %{${fg[magenta]}%}$version%{$reset_color%}]"
+            echo "[js %{${fg[magenta]}%}$version%{$reset_color%}]"
         fi
     fi
 }
@@ -76,9 +76,9 @@ function rprompt-ruby-version {
         version=`rbenv version | sed -e "s/ (set.*$//"`
 
         if [[ "`rbenv version | grep '.rbenv/version'`" = "" ]];then
-            echo "[r %{${fg[yellow]}%}$version%{$reset_color%}]"
+            echo "[rb %{${fg[yellow]}%}$version%{$reset_color%}]"
         else
-            echo "[r %{${fg[magenta]}%}$version%{$reset_color%}]"
+            echo "[rb %{${fg[magenta]}%}$version%{$reset_color%}]"
         fi
     fi
 }
