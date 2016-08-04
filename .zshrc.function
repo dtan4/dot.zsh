@@ -49,6 +49,10 @@ function mkd {
     fi
 }
 
+function ng {
+  git --no-pager $@
+}
+
 function nsum {
     ruby -e 'puts ARGV.inject(0) { |sum, num| sum += num.to_i; sum }'
 }
