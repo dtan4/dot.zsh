@@ -59,9 +59,9 @@ function rprompt-node-version {
     local version setting
 
     if which rbenv &> /dev/null; then
-        version=`ndenv version | sed -e "s/ (set.*$//"`
+        version=`nodenv version | sed -e "s/ (set.*$//"`
 
-        if [[ "`ndenv version | grep '.ndenv/version'`" = "" ]];then
+        if [[ "`nodenv version | grep '.nodenv/version'`" = "" ]];then
             echo "[js %{${fg[yellow]}%}$version%{$reset_color%}]"
         else
             echo "[js %{${fg[magenta]}%}$version%{$reset_color%}]"
