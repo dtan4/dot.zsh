@@ -1,3 +1,5 @@
+source $ZDOTDIR/zplug/init.zsh
+
 fpath=("$ZDOTDIR/zsh-completions/src" $fpath)
 
 source $ZDOTDIR/z/z.sh

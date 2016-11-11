@@ -10,3 +10,6 @@
 [submodule "zsh-notify"]
 	path = zsh-notify
 	url = https://github.com/marzocchi/zsh-notify.git
+[submodule "zplug"]
+	path = zplug
+	url = https://github.com/zplug/zplug.git
