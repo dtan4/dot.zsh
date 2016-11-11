@@ -1,9 +1,17 @@
 source $ZDOTDIR/zplug/init.zsh
 
-fpath=("$ZDOTDIR/zsh-completions/src" $fpath)
+zplug "rupa/z", use:z.sh
+zplug "zsh-users/zsh-completions"
+zplug "zsh-users/zsh-syntax-highlighting"
+zplug "marzocchi/zsh-notify"
 
-source $ZDOTDIR/z/z.sh
-source $ZDOTDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if ! zplug check --verbose; then
+  echo; zplug install
+fi
+
+zplug load --verbose
+
+fpath=("$HOME/.zplug/repos/zsh-users/zsh-completions/src/" $fpath)
 
 autoload -Uz compinit
 compinit
