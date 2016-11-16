@@ -5,11 +5,6 @@ export LESSOPEN='| /usr/bin/source-highlight-esc.sh %s'
 alias ls='ls --color=auto'
 alias open="xdg-open"
 alias eclipse='MALLOC_CHECK_=0 /usr/local/eclipse/eclipse'
-alias lduald='xrandr --output eDP1 --auto --output HDMI1 --auto --right-of eDP1'
-alias duald='xrandr --output HDMI1 --auto --output eDP1 --auto --right-of HDMI1'
-alias cloned='xrandr --output HDMI1 --auto --same-as eDP1'
-alias singled='xrandr --output HDMI1 --off'
-alias battery="acpi -b | cut -d' ' -f3,4 | sed 's/,$//g'"
 
 export PATH=/usr/local/appengine-java-sdk/bin:$PATH
 export PATH=/usr/local/heroku/bin:$PATH

@@ -7,18 +7,6 @@ function cdtop() {
     fi
 }
 
-### completion of ~/git ###
-function cdgit {
-    cd ~/git/$1
-}
-
-function _g {
-    _files -W ~/git/ && return 0;
-    return 1;
-}
-
-compdef _g cdgit
-
 function e {
     local args
 
@@ -40,25 +28,12 @@ function linecount {
 }
 alias linecount='noglob linecount'
 
-function mkd {
-    if [[ -d $1 ]]; then
-        echo "$1 already exists!"
-        cd $1
-    else
-        mkdir -p $1 && cd $1
-    fi
-}
-
 function ng {
   git --no-pager $@
 }
 
 function nsum {
     ruby -e 'puts ARGV.inject(0) { |sum, num| sum += num.to_i; sum }'
-}
-
-function pdfgrep {
-    find . -name '*.pdf.txt' | xargs grep -i $1 2> /dev/null | sed -e 's/\.pdf\.txt/\.pdf/g'
 }
 
 function rep {
@@ -79,11 +54,7 @@ function server() {
     ruby -rwebrick -e 'WEBrick::HTTPServer.new({:DocumentRoot => "./", :Port => 8080}).start'
 }
 
-function viaproxy() {
-    local proxy_address="proxy.noc.titech.ac.jp:3128"
-    http_proxy=$proxy_address https_proxy=$proxy_address $@
-}
-
+# Execute `rehash` with ^L (clear screen)
 # http://shinh.hatenablog.com/entry/20080424/1208971521
 function clear-screen-rehash() {
     zle clear-screen
@@ -92,6 +63,7 @@ function clear-screen-rehash() {
 zle -N clear-screen-rehash
 bindkey '^L' clear-screen-rehash
 
+# Omit some items from `ls` result
 # http://qiita.com/yuyuchu3333/items/b10542db482c3ac8b059
 function ls_abbrev() {
     if [[ ! -r $PWD ]]; then

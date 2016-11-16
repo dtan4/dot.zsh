@@ -4,7 +4,6 @@ alias javac="javac -J-Dfile.encoding=UTF8"
 # alias java="java -J-Dfile.encoding=UTF8"
 
 # reload .zshrc
-# alias sourcez='source ~/.zshrc'
 alias reload='exec zsh -l'
 
 # extend cd
@@ -15,23 +14,20 @@ alias cdarc='cd ~/Dropbox/Archives'
 alias cdmemo='cd ~/Dropbox/memo'
 alias cdgit='cd ~/src/github.com/dtan4'
 
-# extend existed command
+# extend existing command
 alias be='bundle exec'
 alias bi='bundle install'
 alias bg='bundle gem'
 alias bu='bundle update'
-alias curl='noglob curl'
+alias curl='noglob curl' # Do not expand wildcards in URL
 alias g='git'
-alias gp='grep -n --color=auto'
 alias gcc='gcc -Werror -Wall'
-alias kb='kubernetes'
-alias l='less'
 alias ocaml='rlwrap ocaml'
 alias pingg='ping www.google.com'
 alias r='rails'
 alias v='vim'
-alias vbreload="vagrant up; vagrant ssh -c 'sudo ln -s /opt/VBoxGuestAdditions-4.3.10/lib/VBoxGuestAdditions /usr/lib/VBoxGuestAdditions'; vagrant reload"
 
+# Escape from MOJIBAKEd shell
 # http://orangeclover.hatenablog.com/entry/20110201/1296511181
 alias mojibake="echo -e '\026\033c'"
 

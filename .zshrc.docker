@@ -3,8 +3,6 @@
 alias d='docker'
 alias dc='docker-compose'
 alias dm='docker-machine'
-alias dr='docker run'
-alias drit='docker run -i -t'
 
 alias alpine='docker run -it --rm alpine:3.4 /bin/sh'
 alias centos='docker run -it --rm centos:7 /bin/bash'
@@ -12,14 +10,6 @@ alias ubuntu='docker run -it --rm ubuntu:16.04 /bin/bash'
 
 function dbu() {
     docker build -t $1 .
-}
-
-function dms() {
-  if [[ -z $(docker-machine ls | grep default | grep Running) ]]; then
-    docker-machine start default
-  fi
-
-  eval $(docker-machine env default)
 }
 
 # http://qiita.com/rosylilly/items/08f4c0771e2ca92a72aa
