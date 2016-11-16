@@ -15,6 +15,7 @@ zplug load --verbose
 
 fpath=("$ZPLUG_HOME/repos/zsh-users/zsh-completions/src/" $fpath)
 
+rm -rf ~/.zcompdump
 autoload -Uz compinit
 compinit
 
