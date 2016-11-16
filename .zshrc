@@ -1,4 +1,6 @@
-source $ZDOTDIR/zplug/init.zsh
+typeset -x ZPLUG_HOME=$ZDOTDIR/zplug
+
+source $ZPLUG_HOME/init.zsh
 
 zplug "rupa/z", use:z.sh, at:v1.9
 zplug "zsh-users/zsh-completions", at:0.22.0
@@ -11,7 +13,7 @@ fi
 
 zplug load --verbose
 
-fpath=("$HOME/.zplug/repos/zsh-users/zsh-completions/src/" $fpath)
+fpath=("$ZPLUG_HOME/repos/zsh-users/zsh-completions/src/" $fpath)
 
 autoload -Uz compinit
 compinit
