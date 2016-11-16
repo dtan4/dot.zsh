@@ -19,7 +19,7 @@ export PATH=$HOME/android-sdks/platform-tools:$PATH
 export PATH=/opt/chefdk/bin:$PATH
 export PATH=/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH
 
-source $ZDOTDIR/zsh-notify/notify.plugin.zsh
+source $ZPLUG_HOME/repos/marzocchi/zsh-notify/notify.plugin.zsh
 
 export SYS_NOTIFIER="/usr/local/bin/terminal-notifier"
 export NOTIFY_COMMAND_COMPLETE_TIMEOUT=10
