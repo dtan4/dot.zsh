@@ -1,9 +1,9 @@
 source $ZDOTDIR/zplug/init.zsh
 
-zplug "rupa/z", use:z.sh
-zplug "zsh-users/zsh-completions"
-zplug "zsh-users/zsh-syntax-highlighting"
-zplug "marzocchi/zsh-notify"
+zplug "rupa/z", use:z.sh, at:v1.9
+zplug "zsh-users/zsh-completions", at:0.22.0
+zplug "zsh-users/zsh-syntax-highlighting", at:0.5.0
+zplug "marzocchi/zsh-notify", at:v1.0
 
 if ! zplug check --verbose; then
   echo; zplug install
