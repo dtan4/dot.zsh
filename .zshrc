@@ -15,10 +15,6 @@ zplug load --verbose
 
 fpath=("$ZPLUG_HOME/repos/zsh-users/zsh-completions/src/" $fpath)
 
-rm -rf ~/.zcompdump
-autoload -Uz compinit
-compinit
-
 autoload colors
 colors
 
@@ -160,6 +156,7 @@ function tmux-show-pwd() {
 add-zsh-hook precmd tmux-show-pwd
 
 # configure completion again after all other files are loaded
+rm -rf $ZDOTDIR/.zcompdump
 autoload -Uz compinit
 compinit
 
