@@ -57,3 +57,9 @@ fi
 if [[ -e /usr/local/share/zsh/site-functions/_aws ]]; then
   source /usr/local/share/zsh/site-functions/_aws
 fi
+
+# Enable zsh completion of kubectl
+# http://kubernetes.io/docs/user-guide/kubectl/kubectl_completion/
+if which kubectl > /dev/null 2>&1; then
+  source <(kubectl completion zsh)
+fi
