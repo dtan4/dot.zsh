@@ -121,3 +121,15 @@ function netcd() {
 function cleanup() {
     find . -name '#*#' -type f -exec rm {} +
 }
+
+function update-gotools() {
+  echo "===> Updating gocode..."
+  go get -u -v github.com/nsf/gocode
+
+  echo "===> Updating godef..."
+  go get -u -v github.com/rogpeppe/godef
+
+  echo "===> Updating gometalinter..."
+  go get -u -v github.com/alecthomas/gometalinter
+  gometalinter --install
+}
