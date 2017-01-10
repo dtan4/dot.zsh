@@ -2,7 +2,6 @@ typeset -x ZPLUG_HOME=$ZDOTDIR/zplug
 
 source $ZPLUG_HOME/init.zsh
 
-zplug "rupa/z", use:z.sh, at:v1.9
 zplug "zsh-users/zsh-completions", at:0.22.0
 zplug "zsh-users/zsh-syntax-highlighting", at:0.5.0, defer:2
 zplug "marzocchi/zsh-notify", at:v1.0
@@ -20,11 +19,6 @@ autoload -Uz add-zsh-hook
 
 export LANG=ja_JP.UTF-8
 export PATH=/usr/local/bin:/usr/local/sbin:/sbin:$PATH
-
-# http://d.hatena.ne.jp/naoya/20130108/1357630895
-function precmd () {
-   z --add "$(pwd -P)"
-}
 
 bindkey -e
 
