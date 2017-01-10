@@ -2,7 +2,6 @@ typeset -x ZPLUG_HOME=$ZDOTDIR/zplug
 
 source $ZPLUG_HOME/init.zsh
 
-zplug "rupa/z", use:z.sh, at:v1.9
 zplug "zsh-users/zsh-completions", at:0.22.0
 zplug "zsh-users/zsh-syntax-highlighting", at:0.5.0, defer:2
 zplug "marzocchi/zsh-notify", at:v1.0
@@ -10,8 +9,6 @@ zplug "marzocchi/zsh-notify", at:v1.0
 if ! zplug check --verbose; then
   echo; zplug install
 fi
-
-zplug load --verbose
 
 fpath=("$ZPLUG_HOME/repos/zsh-users/zsh-completions/src/" $fpath)
 
@@ -22,11 +19,6 @@ autoload -Uz add-zsh-hook
 
 export LANG=ja_JP.UTF-8
 export PATH=/usr/local/bin:/usr/local/sbin:/sbin:$PATH
-
-# http://d.hatena.ne.jp/naoya/20130108/1357630895
-function precmd () {
-   z --add "$(pwd -P)"
-}
 
 bindkey -e
 
@@ -109,7 +101,7 @@ REPORTTIME=3
 if [[ -d $HOME/.anyenv ]]; then
     export PATH=~/.anyenv/bin:$PATH
     export PATH=~/.anyenv/shims:$PATH
-    eval "$(anyenv init - zsh)"
+    eval "$(anyenv init - --no-rehash zsh)"
 
     # http://qiita.com/luckypool/items/f1e756e9d3e9786ad9ea
     for D in `ls $HOME/.anyenv/envs`
@@ -156,9 +148,7 @@ function tmux-show-pwd() {
 add-zsh-hook precmd tmux-show-pwd
 
 # configure completion again after all other files are loaded
-rm -rf $ZDOTDIR/.zcompdump
-autoload -Uz compinit
-compinit
+zplug load
 
 # completion alias
 compdef mosh=ssh

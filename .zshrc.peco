@@ -21,22 +21,6 @@ function peco-src () {
 zle -N peco-src
 bindkey "^W" peco-src
 
-function peco_select_directory() {
-    local tac
-    if which tac > /dev/null; then
-        tac="tac"
-    else
-        tac="tail -r"
-    fi
-    local dest=$(_z -r 2>&1 | eval $tac | peco --query "$LBUFFER" | awk '{ print $2 }')
-    if [ -n "${dest}" ]; then
-        cd ${dest}
-    fi
-    zle reset-prompt
-}
-zle -N peco_select_directory
-bindkey "^X^J" peco_select_directory
-
 # http://blog.horimisli.me/entry/terminal-env-2014
 function peco-proc () {
     local selected_pid=$(ps ax -o pid,lstart,command | peco --query "$LBUFFER" | awk '{print $1}')
@@ -47,10 +31,6 @@ function peco-proc () {
 }
 zle -N peco-proc
 bindkey "^X^P" peco-proc
-
-function findmemo () {
-    ag --ignore "*.pdf" -l -i $1 ~/Dropbox/memo ~/Dropbox/junk | peco | xargs less
-}
 
 function ghis() {
     ghi show $(ghi list --sort updated | grep -v 'open issue' | grep -v 'Not Found' | peco | awk '{ print $1 }')

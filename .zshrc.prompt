@@ -94,15 +94,3 @@ setopt prompt_subst
 PROMPT="%{${fg[magenta]}%}%n ${fg[yellow]}%}%(5~,%-2~/.../%2~,%~) ${fg[white]}%}[%D{%y-%m-%d %T}]%{${reset_color}%} `rprompt-node-version` `rprompt-ruby-version` `rprompt-git-current-branch``rprompt-git-not-pushed``rprompt-git-stash`
 $ "
 PROMPT2='[%n]> '
-
-case "${TERM}" in
-    kterm*|xterm)
-	precmd(){
-	    echo -ne "\033]0;${USER}@${HOST%%.*}:${PWD}\007"
-	}
-	;;
-    dumb | emacs)
-	PROMPT="%m:%~> "
-	unsetopt zle
-	;;
-esac
