@@ -109,7 +109,7 @@ REPORTTIME=3
 if [[ -d $HOME/.anyenv ]]; then
     export PATH=~/.anyenv/bin:$PATH
     export PATH=~/.anyenv/shims:$PATH
-    eval "$(anyenv init - zsh)"
+    eval "$(anyenv init - --no-rehash zsh)"
 
     # http://qiita.com/luckypool/items/f1e756e9d3e9786ad9ea
     for D in `ls $HOME/.anyenv/envs`
