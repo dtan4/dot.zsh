@@ -11,8 +11,6 @@ if ! zplug check --verbose; then
   echo; zplug install
 fi
 
-zplug load --verbose
-
 fpath=("$ZPLUG_HOME/repos/zsh-users/zsh-completions/src/" $fpath)
 
 autoload colors
@@ -156,8 +154,7 @@ function tmux-show-pwd() {
 add-zsh-hook precmd tmux-show-pwd
 
 # configure completion again after all other files are loaded
-autoload -Uz compinit
-compinit
+zplug load --verbose
 
 # completion alias
 compdef mosh=ssh
