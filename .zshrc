@@ -156,7 +156,6 @@ function tmux-show-pwd() {
 add-zsh-hook precmd tmux-show-pwd
 
 # configure completion again after all other files are loaded
-rm -rf $ZDOTDIR/.zcompdump
 autoload -Uz compinit
 compinit
 
