@@ -154,7 +154,7 @@ function tmux-show-pwd() {
 add-zsh-hook precmd tmux-show-pwd
 
 # configure completion again after all other files are loaded
-zplug load --verbose
+zplug load
 
 # completion alias
 compdef mosh=ssh
