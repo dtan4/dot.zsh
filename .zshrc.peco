@@ -32,10 +32,6 @@ function peco-proc () {
 zle -N peco-proc
 bindkey "^X^P" peco-proc
 
-function findmemo () {
-    ag --ignore "*.pdf" -l -i $1 ~/Dropbox/memo ~/Dropbox/junk | peco | xargs less
-}
-
 function ghis() {
     ghi show $(ghi list --sort updated | grep -v 'open issue' | grep -v 'Not Found' | peco | awk '{ print $1 }')
 }
