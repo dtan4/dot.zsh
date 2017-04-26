@@ -106,3 +106,16 @@ function update-gotools() {
   go get -u -v github.com/alecthomas/gometalinter
   gometalinter --install
 }
+
+# http://qiita.com/kawaz/items/20983ec286088a1ae5c7
+function update-ssh-known-hosts() {
+  if [ $# != 1 ]; then
+    echo "usage: update-ssh-known-hosts HOSTNAME"
+    return
+  fi
+
+  local hostname=$1
+
+  ssh-keygen -R $hostname
+  ssh-keyscan -H $hostname >> ~/.ssh/known_hosts
+}
