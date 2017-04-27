@@ -55,6 +55,16 @@ function rprompt-git-current-branch {
     fi
 }
 
+function rprompt-k8s-context {
+  local context
+
+  if which kubectl &> /dev/null; then
+    context=`kubectl config current-context | cut -d'.' -f1`
+  fi
+
+  echo "[%{${fg[blue]}%}$context%{$reset_color%}]"
+}
+
 function rprompt-node-version {
     local version setting
 
@@ -84,13 +94,13 @@ function rprompt-ruby-version {
 }
 
 function refresh-prompt {
-    PROMPT="%{${fg[magenta]}%}%n ${fg[yellow]}%}%(5~,%-2~/.../%2~,%~) ${fg[white]}%}[%D{%y-%m-%d %T}]%{${reset_color}%} `rprompt-node-version` `rprompt-ruby-version` `rprompt-git-current-branch``rprompt-git-not-pushed``rprompt-git-stash`
+    PROMPT="%{${fg[magenta]}%}%n ${fg[yellow]}%}%(5~,%-2~/.../%2~,%~) ${fg[white]}%}[%D{%y-%m-%d %T}]%{${reset_color}%} `rprompt-node-version` `rprompt-ruby-version` `rprompt-k8s-context` `rprompt-git-current-branch``rprompt-git-not-pushed``rprompt-git-stash`
 %{%(?.${reset_color}.${fg[red]})%}$%{${reset_color}%} "
 }
 
 add-zsh-hook precmd refresh-prompt
 
 setopt prompt_subst
-PROMPT="%{${fg[magenta]}%}%n ${fg[yellow]}%}%(5~,%-2~/.../%2~,%~) ${fg[white]}%}[%D{%y-%m-%d %T}]%{${reset_color}%} `rprompt-node-version` `rprompt-ruby-version` `rprompt-git-current-branch``rprompt-git-not-pushed``rprompt-git-stash`
+PROMPT="%{${fg[magenta]}%}%n ${fg[yellow]}%}%(5~,%-2~/.../%2~,%~) ${fg[white]}%}[%D{%y-%m-%d %T}]%{${reset_color}%} `rprompt-node-version` `rprompt-ruby-version` `rprompt-k8s-context` `rprompt-git-current-branch``rprompt-git-not-pushed``rprompt-git-stash`
 $ "
 PROMPT2='[%n]> '
