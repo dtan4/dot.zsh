@@ -59,7 +59,7 @@ function rprompt-k8s-context {
   local context
 
   if which kubectl &> /dev/null; then
-    context=`kubectl config current-context | cut -d'.' -f1`
+    context=`kubectl config current-context 2> /dev/null | cut -d'.' -f1`
   fi
 
   echo "[%{${fg[blue]}%}$context%{$reset_color%}]"
