@@ -65,3 +65,6 @@ if which kubectl > /dev/null 2>&1; then
 fi
 
 export GOROOT=`go env GOROOT`
+
+# https://github.com/pstadler/keybase-gpg-github#optional-setting-up-tty
+export GPG_TTY=$(tty)
