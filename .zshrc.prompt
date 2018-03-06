@@ -65,6 +65,16 @@ function rprompt-k8s-context {
   echo "[%{${fg[blue]}%}$context%{$reset_color%}]"
 }
 
+function rprompt-gcp-project {
+  local project
+
+  if which gcloud &> /dev/null; then
+    project=`gcloud config get-value project`
+  fi
+
+  echo "[%{${fg[blue]}%}$project%{$reset_color%}]"
+}
+
 function rprompt-node-version {
     local version setting
 
@@ -94,13 +104,13 @@ function rprompt-ruby-version {
 }
 
 function refresh-prompt {
-    PROMPT="%{${fg[magenta]}%}>%{$reset_color%} ${fg[yellow]}%}%(5~,%-2~/.../%2~,%~) ${fg[white]}%}[%D{%m-%d %T}]%{${reset_color}%} `rprompt-node-version` `rprompt-ruby-version` `rprompt-k8s-context` `rprompt-git-current-branch``rprompt-git-not-pushed``rprompt-git-stash`
+    PROMPT="%{${fg[magenta]}%}>%{$reset_color%} ${fg[yellow]}%}%(5~,%-2~/.../%2~,%~) ${fg[white]}%}[%D{%m-%d %T}]%{${reset_color}%} `rprompt-node-version` `rprompt-ruby-version` `rprompt-gcp-project` `rprompt-k8s-context` `rprompt-git-current-branch``rprompt-git-not-pushed``rprompt-git-stash`
 %{%(?.${reset_color}.${fg[red]})%}$%{${reset_color}%} "
 }
 
 add-zsh-hook precmd refresh-prompt
 
 setopt prompt_subst
-PROMPT="%{${fg[magenta]}%}>%{$reset_color%} ${fg[yellow]}%}%(5~,%-2~/.../%2~,%~) ${fg[white]}%}[%D{%m-%d %T}]%{${reset_color}%} `rprompt-node-version` `rprompt-ruby-version` `rprompt-k8s-context` `rprompt-git-current-branch``rprompt-git-not-pushed``rprompt-git-stash`
+PROMPT="%{${fg[magenta]}%}>%{$reset_color%} ${fg[yellow]}%}%(5~,%-2~/.../%2~,%~) ${fg[white]}%}[%D{%m-%d %T}]%{${reset_color}%} `rprompt-node-version` `rprompt-ruby-version` `rprompt-gcp-project` `rprompt-k8s-context` `rprompt-git-current-branch``rprompt-git-not-pushed``rprompt-git-stash`
 $ "
 PROMPT2='[%n]> '
