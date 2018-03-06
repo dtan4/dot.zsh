@@ -62,7 +62,7 @@ function rprompt-k8s-context {
     context=`kubectl config current-context 2> /dev/null | cut -d'.' -f1`
   fi
 
-  echo "[%{${fg[blue]}%}$context%{$reset_color%}]"
+  echo "[%{${fg[cyan]}%}$context%{$reset_color%}]"
 }
 
 function rprompt-gcp-project {
@@ -72,7 +72,7 @@ function rprompt-gcp-project {
     project=`gcloud config get-value project`
   fi
 
-  echo "[%{${fg[blue]}%}$project%{$reset_color%}]"
+  echo "[%{${fg[cyan]}%}$project%{$reset_color%}]"
 }
 
 function rprompt-node-version {
