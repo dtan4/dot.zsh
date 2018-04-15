@@ -55,62 +55,14 @@ function rprompt-git-current-branch {
     fi
 }
 
-function rprompt-k8s-context {
-  local context
-
-  if which kubectl &> /dev/null; then
-    context=`kubectl config current-context 2> /dev/null | cut -d'.' -f1`
-  fi
-
-  echo "[%{${fg[cyan]}%}$context%{$reset_color%}]"
-}
-
-function rprompt-gcp-project {
-  local project
-
-  if which gcloud &> /dev/null; then
-    project=`gcloud config get-value project`
-  fi
-
-  echo "[%{${fg[cyan]}%}$project%{$reset_color%}]"
-}
-
-function rprompt-node-version {
-    local version setting
-
-    if which rbenv &> /dev/null; then
-        version=`nodenv version | sed -e "s/ (set.*$//"`
-
-        if [[ "`nodenv version | grep '.nodenv/version'`" = "" ]];then
-            echo "[%{${fg[yellow]}%}$version%{$reset_color%}]"
-        else
-            echo "[%{${fg[magenta]}%}$version%{$reset_color%}]"
-        fi
-    fi
-}
-
-function rprompt-ruby-version {
-    local version setting
-
-    if which rbenv &> /dev/null; then
-        version=`rbenv version | sed -e "s/ (set.*$//"`
-
-        if [[ "`rbenv version | grep '.rbenv/version'`" = "" ]];then
-            echo "[%{${fg[yellow]}%}$version%{$reset_color%}]"
-        else
-            echo "[%{${fg[magenta]}%}$version%{$reset_color%}]"
-        fi
-    fi
-}
-
 function refresh-prompt {
-    PROMPT="%{${fg[magenta]}%}>%{$reset_color%} ${fg[yellow]}%}%(5~,%-2~/.../%2~,%~) ${fg[white]}%}[%D{%m-%d %T}]%{${reset_color}%} `rprompt-node-version` `rprompt-ruby-version` `rprompt-gcp-project` `rprompt-k8s-context` `rprompt-git-current-branch``rprompt-git-not-pushed``rprompt-git-stash`
+    PROMPT="%{${fg[magenta]}%}>%{$reset_color%} ${fg[yellow]}%}%(5~,%-2~/.../%2~,%~) ${fg[white]}%}[%D{%m-%d %T}]%{${reset_color}%} `rprompt-git-current-branch``rprompt-git-not-pushed``rprompt-git-stash`
 %{%(?.${reset_color}.${fg[red]})%}$%{${reset_color}%} "
 }
 
 add-zsh-hook precmd refresh-prompt
 
 setopt prompt_subst
-PROMPT="%{${fg[magenta]}%}>%{$reset_color%} ${fg[yellow]}%}%(5~,%-2~/.../%2~,%~) ${fg[white]}%}[%D{%m-%d %T}]%{${reset_color}%} `rprompt-node-version` `rprompt-ruby-version` `rprompt-gcp-project` `rprompt-k8s-context` `rprompt-git-current-branch``rprompt-git-not-pushed``rprompt-git-stash`
+PROMPT="%{${fg[magenta]}%}>%{$reset_color%} ${fg[yellow]}%}%(5~,%-2~/.../%2~,%~) ${fg[white]}%}[%D{%m-%d %T}]%{${reset_color}%} `rprompt-git-current-branch``rprompt-git-not-pushed``rprompt-git-stash`
 $ "
 PROMPT2='[%n]> '
