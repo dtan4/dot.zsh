@@ -66,6 +66,14 @@ function ec2-cssh() {
     fi
 }
 
+function switch-gcp-projects() {
+  local project=`gcloud projects list | tail -n+2 | peco | awk '{ print $1 }'`
+
+  if [ -n "$project" ]; then
+    gcloud config set project $project
+  fi
+}
+
 # http://k0kubun.hatenablog.com/entry/2014/07/06/033336
 alias -g B='`git branch | peco | sed -e "s/^\*[ ]*//g"`'
 alias -g C='`git log --oneline --branches | peco | cut -d" " -f1`'
