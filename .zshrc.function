@@ -120,6 +120,10 @@ function update-ssh-known-hosts() {
   ssh-keyscan -H $hostname >> ~/.ssh/known_hosts
 }
 
+function current-gcp-project() {
+  gcloud config get-value project
+}
+
 function current-k8s-context() {
   kubectl config current-context
 }
