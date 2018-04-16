@@ -119,3 +119,7 @@ function update-ssh-known-hosts() {
   ssh-keygen -R $hostname
   ssh-keyscan -H $hostname >> ~/.ssh/known_hosts
 }
+
+function current-k8s-context() {
+  kubectl config current-context
+}
