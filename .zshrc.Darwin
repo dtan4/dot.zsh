@@ -46,12 +46,12 @@ function dnsrefresh() {
 
 [[ -d $(brew --prefix)/share/zsh/site-functions ]] && fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
 
-if [[ -e $HOME/google-cloud-sdk/path.zsh.inc ]]; then
-  source $HOME/google-cloud-sdk/path.zsh.inc
+if [[ -e /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc ]]; then
+  source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
 fi
 
-if [[ -e $HOME/google-cloud-sdk/completion.zsh.inc ]]; then
-  source $HOME/google-cloud-sdk/completion.zsh.inc
+if [[ -e /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc ]]; then
+  source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
 fi
 
 if [[ -e /usr/local/share/zsh/site-functions/_aws ]]; then
