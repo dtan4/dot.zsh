@@ -74,6 +74,14 @@ function switch-gcp-projects() {
   fi
 }
 
+function switch-k8s-context() {
+  local context=`kubectl config view -o json | jq -r .clusters[].name | peco`
+
+  if [ -n "$context" ]; then
+    kubectl config use-context $context
+  fi
+}
+
 # http://k0kubun.hatenablog.com/entry/2014/07/06/033336
 alias -g B='`git branch | peco | sed -e "s/^\*[ ]*//g"`'
 alias -g C='`git log --oneline --branches | peco | cut -d" " -f1`'
