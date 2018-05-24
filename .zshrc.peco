@@ -21,25 +21,6 @@ function peco-src () {
 zle -N peco-src
 bindkey "^W" peco-src
 
-# http://blog.horimisli.me/entry/terminal-env-2014
-function peco-proc () {
-    local selected_pid=$(ps ax -o pid,lstart,command | peco --query "$LBUFFER" | awk '{print $1}')
-    if [ -n "$selected_pid" ]; then
-        kill $selected_pid
-    fi
-    zle -R -c
-}
-zle -N peco-proc
-bindkey "^X^P" peco-proc
-
-function ghis() {
-    ghi show $(ghi list --sort updated | grep -v 'open issue' | grep -v 'Not Found' | peco | awk '{ print $1 }')
-}
-
-function httpst() {
-    ruby -r rack/utils -e 'Rack::Utils::HTTP_STATUS_CODES.each_pair { |code, desc| puts "#{code} #{desc}" }' | peco
-}
-
 function ec2s() {
     local jq_query='.Reservations[] | .Instances[] | select(.State.Name != "terminated") | select(has("PublicIpAddress")) | [.PublicIpAddress,.PrivateIpAddress,.State.Name,(.Tags[] | select(.Key == "Name") | .Value // "")] | join("\t")'
 
