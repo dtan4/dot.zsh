@@ -66,6 +66,14 @@ function ec2-cssh() {
     fi
 }
 
+function open-gcp-dashboard() {
+  local project=`gcloud projects list | tail -n+2 | peco | awk '{ print $1 }'`
+
+  if [ -n "$project" ]; then
+    open "https://console.cloud.google.com/home/dashboard?project=${project}"
+  fi
+}
+
 function switch-gcp-projects() {
   local project=`gcloud projects list | tail -n+2 | peco | awk '{ print $1 }'`
 
