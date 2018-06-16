@@ -17,7 +17,6 @@ colors
 
 autoload -Uz add-zsh-hook
 
-export LANG=ja_JP.UTF-8
 export PATH=/usr/local/bin:/usr/local/sbin:/sbin:$PATH
 
 bindkey -e
