@@ -64,7 +64,7 @@ function switch-gcp-projects() {
 }
 
 function switch-k8s-context() {
-  local context=`kubectl config view -o json | jq -r .clusters[].name | peco`
+  local context=`kubectl config get-contexts -o name | peco`
 
   if [ -n "$context" ]; then
     kubectl config use-context $context
