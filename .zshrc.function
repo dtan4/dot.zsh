@@ -85,7 +85,7 @@ function cleanup() {
 
 function update-gotools() {
   echo "===> Updating gocode..."
-  go get -u -v github.com/nsf/gocode
+  go get -u -v github.com/mdempsky/gocode
 
   echo "===> Updating godef..."
   go get -u -v github.com/rogpeppe/godef
