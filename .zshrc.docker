@@ -4,9 +4,9 @@ alias d='docker'
 alias dc='docker-compose'
 alias dm='docker-machine'
 
-alias alpine='docker run -it --rm alpine:3.7 /bin/sh'
+alias alpine='docker run -it --rm alpine:3.8 /bin/sh'
 alias centos='docker run -it --rm centos:7 /bin/bash'
-alias ubuntu='docker run -it --rm ubuntu:16.04 /bin/bash'
+alias ubuntu='docker run -it --rm ubuntu:18.04 /bin/bash'
 
 function dbu() {
     docker build -t $1 .
