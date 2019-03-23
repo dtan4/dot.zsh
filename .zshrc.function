@@ -84,15 +84,8 @@ function cleanup() {
 }
 
 function update-gotools() {
-  echo "===> Updating gocode..."
-  go get -u -v github.com/mdempsky/gocode
-
-  echo "===> Updating godef..."
-  go get -u -v github.com/rogpeppe/godef
-
-  echo "===> Updating gometalinter..."
-  go get -u -v github.com/alecthomas/gometalinter
-  gometalinter --install
+  echo "===> Updating bingo..."
+  go get -u -v github.com/saibing/bingo
 }
 
 # http://qiita.com/kawaz/items/20983ec286088a1ae5c7
