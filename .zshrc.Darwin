@@ -11,6 +11,7 @@ alias vless='/usr/local/share/vim/vim74/macros/less.sh'
 export PATH=/usr/sbin:$PATH
 export PATH=/usr/texbin:$PATH
 export PATH=$HOME/android-sdks/platform-tools:$PATH
+export PATH=$HOME/.cargo/bin:$PATH
 export PATH=/opt/chefdk/bin:$PATH
 export PATH=/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH
 
