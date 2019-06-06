@@ -27,6 +27,15 @@ function server() {
     ruby -rwebrick -e 'WEBrick::HTTPServer.new({:DocumentRoot => "./", :Port => 8080}).start'
 }
 
+function ip2binary() {
+  if [[ "$#" != 1 ]]; then
+    echo "usage: ip2binary <IP_ADDRESS>" 2>&1
+    return 1
+  fi
+
+  echo $1 | ruby -e 'puts ARGF.read.strip.split(".").map { |f| ("%08b" % f) }.join(" ")'
+}
+
 # Execute `rehash` with ^L (clear screen)
 # http://shinh.hatenablog.com/entry/20080424/1208971521
 function clear-screen-rehash() {
