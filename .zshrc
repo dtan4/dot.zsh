@@ -163,3 +163,8 @@ compdef -d gradle
 compdef -d docker
 compdef -d mvn
 compdef -d mysql
+
+if [ -f /usr/local/bin/terraform ]; then
+  # terraform -install-autocomplete
+  complete -C /usr/local/bin/terraform terraform
+fi
