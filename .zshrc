@@ -2,7 +2,7 @@ typeset -x ZPLUG_HOME=$ZDOTDIR/zplug
 
 source $ZPLUG_HOME/init.zsh
 
-zplug "zsh-users/zsh-completions", at:0.28.0
+zplug "zsh-users/zsh-completions", at:0.31.0
 zplug "zsh-users/zsh-syntax-highlighting", at:0.6.0, defer:2
 zplug "marzocchi/zsh-notify", at:v1.0
 
