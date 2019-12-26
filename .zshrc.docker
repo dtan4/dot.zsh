@@ -8,6 +8,22 @@ alias alpine='docker run -it --rm alpine:3.8 /bin/sh'
 alias centos='docker run -it --rm centos:7 /bin/bash'
 alias ubuntu='docker run -it --rm ubuntu:18.04 /bin/bash'
 
+function docker-go() {
+  declare go_version="1.13"
+
+  if [[ "$#" -gt 0 ]]; then
+    go_version="$1"
+  fi
+
+  declare -r name="$(basename "${PWD}")"
+  declare -r user="$(basename $(dirname "${PWD}"))"
+  declare -r vcs="$(basename $(dirname $(dirname "${PWD}")))"
+
+  declare -r workdir="/go/src/${vcs}/${user}/${name}"
+
+  docker run --rm -it -v "${PWD}":"${workdir}" -w "${workdir}" golang:"${go_version}"
+}
+
 function dbu() {
     docker build -t $1 .
 }
