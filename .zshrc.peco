@@ -2,9 +2,9 @@
 
 function peco_select_history() {
     local tac
-    if which gtac > /dev/null > 2>&1; then
+    if which gtac > /dev/null 2>&1; then
       tac="gtac"
-    elif which tac > /dev/null > 2>&1; then
+    elif which tac > /dev/null 2>&1; then
       tac="tac"
     else
       tac="tail -r"
