@@ -2,8 +2,15 @@
 
 function peco_select_history() {
     local tac
-    exists gtac && tac="gtac" || { exists tac && tac="tac" || { tac="tail -r" } }
-    BUFFER=$(fc -l -n 1 | eval $tac | peco --query "$LBUFFER")
+    if which gtac > /dev/null 2>&1; then
+      tac="gtac"
+    elif which tac > /dev/null 2>&1; then
+      tac="tac"
+    else
+      tac="tail -r"
+    fi
+
+    BUFFER="$(fc -l -n 1 | eval "${tac}" | peco --query "$LBUFFER")"
     CURSOR=$#BUFFER         # move cursor
     zle -R -c               # refresh
 }
@@ -11,7 +18,8 @@ zle -N peco_select_history
 bindkey "^R" peco_select_history
 
 function peco-src () {
-    local selected_dir=$(ghq list | peco --query "$LBUFFER")
+    local selected_dir
+    selected_dir="$(ghq list | peco --query "${LBUFFER}")"
     if [ -n "$selected_dir" ]; then
         BUFFER="cd $(ghq root)/${selected_dir}"
         CURSOR=$#BUFFER         # move cursor
@@ -25,30 +33,15 @@ function ec2s() {
     local jq_query='.Reservations[] | .Instances[] | select(.State.Name != "terminated") | select(has("PublicIpAddress")) | [.PublicIpAddress,.PrivateIpAddress,.State.Name,(.Tags[] | select(.Key == "Name") | .Value // "")] | join("\t")'
 
     if type envchain > /dev/null 2>&1; then
-        envchain $1 aws ec2 describe-instances | jq -r $jq_query | peco
+        envchain "${1}" aws ec2 describe-instances | jq -r "${jq_query}" | peco
     else
-        aws ec2 describe-instances | jq -r $jq_query | peco
-    fi
-}
-
-function ec2-cssh() {
-    local ssh_user=$1
-    local ssh_key=$2
-    local ip_addresses
-
-    if type envchain > /dev/null 2>&1; then
-        ip_addresses=$(ec2s $3 | awk '{ print $1 }' | tr '\n' ' ')
-    else
-        ip_addresses=$(ec2s | awk '{ print $1 }' | tr '\n' ' ')
-    fi
-
-    if [ -n $ip_addresses ]; then
-        sh -c "tmux-cssh -u $ssh_user -i $ssh_key $ip_addresses"
+        aws ec2 describe-instances | jq -r "${jq_query}" | peco
     fi
 }
 
 function open-gcp-dashboard() {
-  local project=`gcloud projects list | tail -n+2 | peco | awk '{ print $1 }'`
+  local project
+  project="$(gcloud projects list | tail -n+2 | peco | awk '{ print $1 }')"
 
   if [ -n "$project" ]; then
     open "https://console.cloud.google.com/home/dashboard?project=${project}"
@@ -56,18 +49,20 @@ function open-gcp-dashboard() {
 }
 
 function switch-gcp-projects() {
-  local project=`gcloud projects list | tail -n+2 | peco | awk '{ print $1 }'`
+  local project
+  project="$(gcloud projects list | tail -n+2 | peco | awk '{ print $1 }')"
 
   if [ -n "$project" ]; then
-    gcloud config set project $project
+    gcloud config set project "${project}"
   fi
 }
 
 function switch-k8s-context() {
-  local context=`kubectl config get-contexts -o name | peco`
+  local context
+  context="$(kubectl config get-contexts -o name | peco)"
 
   if [ -n "$context" ]; then
-    kubectl config use-context $context
+    kubectl config use-context "${context}"
   fi
 }
 
