@@ -39,22 +39,6 @@ function ec2s() {
     fi
 }
 
-function ec2-cssh() {
-    local ssh_user=$1
-    local ssh_key=$2
-    local ip_addresses
-
-    if type envchain > /dev/null 2>&1; then
-        ip_addresses=$(ec2s $3 | awk '{ print $1 }' | tr '\n' ' ')
-    else
-        ip_addresses=$(ec2s | awk '{ print $1 }' | tr '\n' ' ')
-    fi
-
-    if [ -n "${ip_addresses}" ]; then
-        sh -c "tmux-cssh -u $ssh_user -i $ssh_key $ip_addresses"
-    fi
-}
-
 function open-gcp-dashboard() {
   local project
   project="$(gcloud projects list | tail -n+2 | peco | awk '{ print $1 }')"
