@@ -3,7 +3,7 @@
 # cd to the top level of git project
 function cdtop() {
     if git rev-parse --is-inside-work-tree > /dev/null; then
-        cd `git rev-parse --show-toplevel`
+        cd "$(git rev-parse --show-toplevel)" || return
     fi
 }
 
@@ -11,16 +11,16 @@ function e {
     local args
 
     if [[ $# -eq 2 ]]; then
-        args="+$2 $1"
+        args="+${2} ${1}"
     else
-        args=`echo $1 | sed -E "s/([^:]+):([0-9:]+)/+\2 \1/g"`
+        args="$(echo "${1}" | sed -E "s/([^:]+):([0-9:]+)/+\2 \1/g")"
     fi
 
     eval "emacsclient -n $args"
 }
 
 function ng {
-  git --no-pager $@
+  git --no-pager "${@}"
 }
 
 function server() {
@@ -33,7 +33,7 @@ function ip2binary() {
     return 1
   fi
 
-  echo $1 | ruby -e 'puts ARGF.read.strip.split(".").map { |f| ("%08b" % f) }.join(" ")'
+  echo "${1}" | ruby -e 'puts ARGF.read.strip.split(".").map { |f| ("%08b" % f) }.join(" ")'
 }
 
 # Execute `rehash` with ^L (clear screen)
@@ -65,14 +65,15 @@ function ls_abbrev() {
     esac
 
     local ls_result
-    ls_result=$(CLICOLOR_FORCE=1 COLUMNS=$COLUMNS command $cmd_ls ${opt_ls[@]} | sed $'/^\e\[[0-9;]*m$/d')
+    ls_result=$(CLICOLOR_FORCE=1 COLUMNS=$COLUMNS command $cmd_ls "${opt_ls[@]}" | sed $'/^\e\[[0-9;]*m$/d')
 
-    local ls_lines=$(echo "$ls_result" | wc -l | tr -d ' ')
+    local ls_lines
+    ls_lines=$(echo "${ls_result}" | wc -l | tr -d ' ')
 
-    if [ $ls_lines -gt 10 ]; then
-        echo "$ls_result" | head -n 5
+    if [ "${ls_lines}" -gt 10 ]; then
+        echo "${ls_result}" | head -n 5
         echo '...'
-        echo "$ls_result" | tail -n 5
+        echo "${ls_result}" | tail -n 5
         echo "$(command ls -1 -A | wc -l | tr -d ' ') files exist"
     else
         echo "$ls_result"
@@ -106,8 +107,8 @@ function update-ssh-known-hosts() {
 
   local hostname=$1
 
-  ssh-keygen -R $hostname
-  ssh-keyscan -H $hostname >> ~/.ssh/known_hosts
+  ssh-keygen -R "${hostname}"
+  ssh-keyscan -H "${hostname}" >> ~/.ssh/known_hosts
 }
 
 function current-gcp-project() {
