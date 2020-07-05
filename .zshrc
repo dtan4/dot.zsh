@@ -119,13 +119,11 @@ export _JAVA_OPTIONS="-Dfile.encoding=UTF-8"
 export GOPATH=$HOME
 export PATH=$GOPATH/bin:$PATH
 
-function exists { which $1 &> /dev/null }
-
-if exists direnv; then
+if which direnv > /dev/null 2>&1; then
     eval "$(direnv hook zsh)"
 fi
 
-if exists peco; then
+if which peco > /dev/null 2>&1; then
     [ -f $ZDOTDIR/.zshrc.peco ] && source $ZDOTDIR/.zshrc.peco
 fi
 
