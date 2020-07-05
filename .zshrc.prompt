@@ -3,7 +3,7 @@
 # http://qiita.com/mollifier/items/8d5a627d773758dd8078
 function rprompt-git-not-pushed() {
     local count
-    if [[ "$PWD" =~ '/\.git(/.*)?$' ]]; then
+    if [[ "$PWD" =~ /\.git(/.*)?$ ]]; then
         return
     fi
     count="$(git rev-list origin/master..master 2>/dev/null | wc -l | tr -d ' ')"
@@ -15,7 +15,7 @@ function rprompt-git-not-pushed() {
 
 function rprompt-git-stash() {
     local count
-    if [[ "$PWD" =~ '/\.git(/.*)?$' ]]; then
+    if [[ "$PWD" =~ /\.git(/.*)?$ ]]; then
         return
     fi
     count="$(git stash list 2>/dev/null | wc -l | tr -d ' ')"
@@ -28,7 +28,7 @@ function rprompt-git-stash() {
 function rprompt-git-current-branch {
     local name st color
 
-    if [[ "$PWD" =~ '/\.git(/.*)?$' ]]; then
+    if [[ "$PWD" =~ /\.git(/.*)?$ ]]; then
         return
     fi
     name=$(git symbolic-ref --short HEAD 2> /dev/null)
