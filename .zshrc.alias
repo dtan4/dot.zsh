@@ -31,7 +31,7 @@ alias v='vim'
 # http://orangeclover.hatenablog.com/entry/20110201/1296511181
 alias mojibake="echo -e '\026\033c'"
 
-if [[ -x `which colordiff` ]]; then
+if [[ -x "$(which colordiff)" ]]; then
     alias diff='colordiff -u'
 else
     alias diff='diff -u'
