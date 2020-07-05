@@ -10,7 +10,7 @@ function peco_select_history() {
       tac="tail -r"
     fi
 
-    BUFFER=$(fc -l -n 1 | eval $tac | peco --query "$LBUFFER")
+    BUFFER=$(fc -l -n 1 | eval "${tac}" | peco --query "$LBUFFER")
     CURSOR=$#BUFFER         # move cursor
     zle -R -c               # refresh
 }
@@ -33,9 +33,9 @@ function ec2s() {
     local jq_query='.Reservations[] | .Instances[] | select(.State.Name != "terminated") | select(has("PublicIpAddress")) | [.PublicIpAddress,.PrivateIpAddress,.State.Name,(.Tags[] | select(.Key == "Name") | .Value // "")] | join("\t")'
 
     if type envchain > /dev/null 2>&1; then
-        envchain $1 aws ec2 describe-instances | jq -r $jq_query | peco
+        envchain "${1}" aws ec2 describe-instances | jq -r "${jq_query}" | peco
     else
-        aws ec2 describe-instances | jq -r $jq_query | peco
+        aws ec2 describe-instances | jq -r "${jq_query}" | peco
     fi
 }
 
@@ -53,7 +53,7 @@ function switch-gcp-projects() {
   project="$(gcloud projects list | tail -n+2 | peco | awk '{ print $1 }')"
 
   if [ -n "$project" ]; then
-    gcloud config set project $project
+    gcloud config set project "${project}"
   fi
 }
 
@@ -62,7 +62,7 @@ function switch-k8s-context() {
   context="$(kubectl config get-contexts -o name | peco)"
 
   if [ -n "$context" ]; then
-    kubectl config use-context $context
+    kubectl config use-context "${context}"
   fi
 }
 
