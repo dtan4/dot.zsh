@@ -20,7 +20,7 @@ export PATH=/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH
 # Since /usr/local/kubebuilder/bin has its own kubectl, it should be placed at the loweest priority
 export PATH=$PATH:/usr/local/kubebuilder/bin
 
-source $ZPLUG_HOME/repos/marzocchi/zsh-notify/notify.plugin.zsh
+source "${ZPLUG_HOME}"/repos/marzocchi/zsh-notify/notify.plugin.zsh
 
 export SYS_NOTIFIER="/usr/local/bin/terminal-notifier"
 export NOTIFY_COMMAND_COMPLETE_TIMEOUT=10
@@ -51,7 +51,7 @@ if which kubectl > /dev/null 2>&1; then
   source <(kubectl completion zsh)
 fi
 
-export GOROOT=`go env GOROOT`
+export GOROOT="$(go env GOROOT)"
 
 # https://github.com/pstadler/keybase-gpg-github#optional-setting-up-tty
 export GPG_TTY=$(tty)
