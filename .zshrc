@@ -4,7 +4,7 @@ export LC_ALL=en_US.UTF-8
 
 typeset -x ZPLUG_HOME=$ZDOTDIR/zplug
 
-source $ZPLUG_HOME/init.zsh
+source "${ZPLUG_HOME}/init.zsh"
 
 zplug "zsh-users/zsh-completions", at:0.31.0
 zplug "zsh-users/zsh-syntax-highlighting", at:0.7.1, defer:2
@@ -124,16 +124,16 @@ if which direnv > /dev/null 2>&1; then
 fi
 
 if which peco > /dev/null 2>&1; then
-    [ -f $ZDOTDIR/.zshrc.peco ] && source $ZDOTDIR/.zshrc.peco
+    [ -f "${ZDOTDIR}/.zshrc.peco" ] && source "${ZDOTDIR}/.zshrc.peco"
 fi
 
-for rctype in "alias" "docker" "function" "prompt" "local" `uname`; do
-    [ -f $ZDOTDIR/.zshrc.$rctype ] && source $ZDOTDIR/.zshrc.$rctype
+for rctype in "alias" "docker" "function" "prompt" "local" "$(uname)"; do
+    [ -f "${ZDOTDIR}/.zshrc.${rctype}" ] && source "${ZDOTDIR}/.zshrc.${rctype}"
 done
 
 function tmux-show-command() {
     if [ -n "$TMUX" ]; then
-        cmd=$(echo $1 | cut -d' ' -f1)
+        cmd="$(echo "${1}" | cut -d' ' -f1)"
         tmux rename-window "$cmd:$PWD:t"
     fi
 }
