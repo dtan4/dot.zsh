@@ -9,8 +9,3 @@ alias eclipse='MALLOC_CHECK_=0 /usr/local/eclipse/eclipse'
 export PATH=/usr/local/appengine-java-sdk/bin:$PATH
 export PATH=/usr/local/heroku/bin:$PATH
 export PATH=$HOME/.cask/bin:$PATH
-
-function cpufreq {
-    echo $1
-    sudo su -c "cpupower frequency-set -g $1"
-}
