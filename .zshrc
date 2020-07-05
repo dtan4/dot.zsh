@@ -107,7 +107,7 @@ if [[ -d $HOME/.anyenv ]]; then
     eval "$(anyenv init - --no-rehash zsh)"
 
     # http://qiita.com/luckypool/items/f1e756e9d3e9786ad9ea
-    for D in `ls $HOME/.anyenv/envs`
+    for D in "${HOME}"/.anyenv/envs/*
     do
         export PATH="$HOME/.anyenv/envs/$D/shims:$PATH"
     done
