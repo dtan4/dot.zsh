@@ -2,7 +2,14 @@
 
 function peco_select_history() {
     local tac
-    exists gtac && tac="gtac" || { exists tac && tac="tac" || { tac="tail -r" } }
+    if which gtac > /dev/null > 2>&1; then
+      tac="gtac"
+    elif which tac > /dev/null > 2>&1; then
+      tac="tac"
+    else
+      tac="tail -r"
+    fi
+
     BUFFER=$(fc -l -n 1 | eval $tac | peco --query "$LBUFFER")
     CURSOR=$#BUFFER         # move cursor
     zle -R -c               # refresh
