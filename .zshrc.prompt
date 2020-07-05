@@ -6,7 +6,7 @@ function rprompt-git-not-pushed() {
     if [[ "$PWD" =~ '/\.git(/.*)?$' ]]; then
         return
     fi
-    count=`git rev-list origin/master..master 2>/dev/null | wc -l | tr -d ' '`
+    count="$(git rev-list origin/master..master 2>/dev/null | wc -l | tr -d ' ')"
     if [[ $count -ne 0 ]]; then
         echo "[%{${fg_bold[red]}%}${count}%{$reset_color%}]"
     fi
@@ -18,7 +18,7 @@ function rprompt-git-stash() {
     if [[ "$PWD" =~ '/\.git(/.*)?$' ]]; then
         return
     fi
-    count=`git stash list 2>/dev/null | wc -l | tr -d ' '`
+    count="$(git stash list 2>/dev/null | wc -l | tr -d ' ')"
     if [[ $count -ne 0 ]]; then
         echo "[%{${fg_bold[yellow]}%}${count}%{$reset_color%}]"
     fi
@@ -35,18 +35,18 @@ function rprompt-git-current-branch {
     if [[ -z $name ]]; then
         return
     fi
-    st=`git status 2> /dev/null`
-    if [[ -n `echo "$st" | grep "^nothing to"` ]]; then
+    st="$(git status 2> /dev/null)"
+    if [[ -n "$(echo "$st" | grep "^nothing to")" ]]; then
         color=${fg[green]}
-    elif [[ -n `echo "$st" | grep "^nothing added"` ]]; then
+    elif [[ -n "$(echo "$st" | grep "^nothing added")" ]]; then
         color=${fg[yellow]}
-    elif [[ -n `echo "$st" | grep "^Untracked"` ]]; then
+    elif [[ -n "$(echo "$st" | grep "^Untracked")" ]]; then
         color=${fg_bold[red]}
     else
         color=${fg[red]}
     fi
 
-    commit_hash=`git log --oneline 2>/dev/null | head -n1 | cut -d' ' -f1`
+    commit_hash="$(git log --oneline 2>/dev/null | head -n1 | cut -d' ' -f1)"
 
     if [[ $commit_hash = "" ]]; then
         echo "[%{$color%}$name%{$reset_color%}]"
@@ -56,13 +56,13 @@ function rprompt-git-current-branch {
 }
 
 function refresh-prompt {
-    PROMPT="%{${fg[magenta]}%}>%{$reset_color%} ${fg[yellow]}%}%(5~,%-2~/.../%2~,%~) ${fg[white]}%}[%D{%m-%d %T}]%{${reset_color}%} `rprompt-git-current-branch``rprompt-git-not-pushed``rprompt-git-stash`
+    PROMPT="%{${fg[magenta]}%}>%{$reset_color%} ${fg[yellow]}%}%(5~,%-2~/.../%2~,%~) ${fg[white]}%}[%D{%m-%d %T}]%{${reset_color}%} $(rprompt-git-current-branch)$(rprompt-git-not-pushed)$(rprompt-git-stash)
 %{%(?.${reset_color}.${fg[red]})%}$%{${reset_color}%} "
 }
 
 add-zsh-hook precmd refresh-prompt
 
 setopt prompt_subst
-PROMPT="%{${fg[magenta]}%}>%{$reset_color%} ${fg[yellow]}%}%(5~,%-2~/.../%2~,%~) ${fg[white]}%}[%D{%m-%d %T}]%{${reset_color}%} `rprompt-git-current-branch``rprompt-git-not-pushed``rprompt-git-stash`
+PROMPT="%{${fg[magenta]}%}>%{$reset_color%} ${fg[yellow]}%}%(5~,%-2~/.../%2~,%~) ${fg[white]}%}[%D{%m-%d %T}]%{${reset_color}%} $(rprompt-git-current-branch)$(rprompt-git-not-pushed)$(rprompt-git-stash)
 $ "
 PROMPT2='[%n]> '
