@@ -25,21 +25,6 @@ export NOTIFY_COMMAND_COMPLETE_TIMEOUT=10
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 export GROOVY_HOME=/usr/local/opt/groovy/libexec
 
-# Print current connected Wi-Fi AP name
-function wifi() {
-    name=`/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | egrep "agrCtlRSSI|state|lastTxRate| SSID" | cut -d: -f2 | tr "\\n" ";" | sed 's/^[ ]//g' | cut -d";" -f4-4 | cut -d" " -f2-`
-
-    if [ "$name" == "" ]; then
-        return 1
-    else
-        echo $name
-    fi
-}
-
-function nowplaying() {
-    osascript -e 'tell application "iTunes" to return name of current track & " | " & artist of current track & " - " & album of current track'
-}
-
 function dnsrefresh() {
     sudo dscacheutil -flushcache
 }
