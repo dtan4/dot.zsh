@@ -28,7 +28,7 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 export GROOVY_HOME=/usr/local/opt/groovy/libexec
 
 function dnsrefresh() {
-    sudo dscacheutil -flushcache
+  sudo dscacheutil -flushcache
 }
 
 [[ -d $(brew --prefix)/share/zsh/site-functions ]] && fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
@@ -47,7 +47,7 @@ fi
 
 # Enable zsh completion of kubectl
 # http://kubernetes.io/docs/user-guide/kubectl/kubectl_completion/
-if which kubectl > /dev/null 2>&1; then
+if which kubectl >/dev/null 2>&1; then
   source <(kubectl completion zsh)
 fi
 

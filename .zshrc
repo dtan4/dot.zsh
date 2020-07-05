@@ -12,7 +12,8 @@ zplug "zsh-users/zsh-syntax-highlighting", at:0.7.1, defer:2
 zplug "marzocchi/zsh-notify", at:v1.0
 
 if ! zplug check --verbose; then
-  echo; zplug install
+  echo
+  zplug install
 fi
 
 fpath=("$ZPLUG_HOME/repos/zsh-users/zsh-completions/src/" $fpath)
@@ -31,7 +32,7 @@ zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 bindkey "^P" history-beginning-search-backward-end
 bindkey "^N" history-beginning-search-forward-end
-bindkey "^[[Z" reverse-menu-complete  # reverse completion menu by Shift-Tab
+bindkey "^[[Z" reverse-menu-complete # reverse completion menu by Shift-Tab
 
 setopt auto_cd
 setopt auto_pushd
@@ -103,15 +104,14 @@ setopt share_history
 REPORTTIME=3
 
 if [[ -d $HOME/.anyenv ]]; then
-    export PATH=~/.anyenv/bin:$PATH
-    export PATH=~/.anyenv/shims:$PATH
-    eval "$(anyenv init - --no-rehash zsh)"
+  export PATH=~/.anyenv/bin:$PATH
+  export PATH=~/.anyenv/shims:$PATH
+  eval "$(anyenv init - --no-rehash zsh)"
 
-    # http://qiita.com/luckypool/items/f1e756e9d3e9786ad9ea
-    for D in "${HOME}"/.anyenv/envs/*
-    do
-        export PATH="$HOME/.anyenv/envs/$D/shims:$PATH"
-    done
+  # http://qiita.com/luckypool/items/f1e756e9d3e9786ad9ea
+  for D in "${HOME}"/.anyenv/envs/*; do
+    export PATH="$HOME/.anyenv/envs/$D/shims:$PATH"
+  done
 fi
 
 export _JAVA_OPTIONS="-Dfile.encoding=UTF-8"
@@ -120,31 +120,31 @@ export _JAVA_OPTIONS="-Dfile.encoding=UTF-8"
 export GOPATH=$HOME
 export PATH=$GOPATH/bin:$PATH
 
-if which direnv > /dev/null 2>&1; then
-    eval "$(direnv hook zsh)"
+if which direnv >/dev/null 2>&1; then
+  eval "$(direnv hook zsh)"
 fi
 
-if which peco > /dev/null 2>&1; then
-    [ -f "${ZDOTDIR}/.zshrc.peco" ] && source "${ZDOTDIR}/.zshrc.peco"
+if which peco >/dev/null 2>&1; then
+  [ -f "${ZDOTDIR}/.zshrc.peco" ] && source "${ZDOTDIR}/.zshrc.peco"
 fi
 
 for rctype in "alias" "docker" "function" "prompt" "local" "$(uname)"; do
-    [ -f "${ZDOTDIR}/.zshrc.${rctype}" ] && source "${ZDOTDIR}/.zshrc.${rctype}"
+  [ -f "${ZDOTDIR}/.zshrc.${rctype}" ] && source "${ZDOTDIR}/.zshrc.${rctype}"
 done
 
 function tmux-show-command() {
-    if [ -n "$TMUX" ]; then
-        cmd="$(echo "${1}" | cut -d' ' -f1)"
-        tmux rename-window "$cmd:$PWD:t"
-    fi
+  if [ -n "$TMUX" ]; then
+    cmd="$(echo "${1}" | cut -d' ' -f1)"
+    tmux rename-window "$cmd:$PWD:t"
+  fi
 }
 
 add-zsh-hook preexec tmux-show-command
 
 function tmux-show-pwd() {
-    if [ -n "$TMUX" ]; then
-        tmux rename-window "zsh:$PWD:t"
-    fi
+  if [ -n "$TMUX" ]; then
+    tmux rename-window "zsh:$PWD:t"
+  fi
 }
 
 add-zsh-hook precmd tmux-show-pwd

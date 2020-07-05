@@ -2,61 +2,61 @@
 
 # http://qiita.com/mollifier/items/8d5a627d773758dd8078
 function rprompt-git-not-pushed() {
-    local count
-    if [[ "$PWD" =~ /\.git(/.*)?$ ]]; then
-        return
-    fi
-    count="$(git rev-list origin/master..master 2>/dev/null | wc -l | tr -d ' ')"
-    if [[ $count -ne 0 ]]; then
-        echo "[%{${fg_bold[red]}%}${count}%{$reset_color%}]"
-    fi
-    return 0
+  local count
+  if [[ "$PWD" =~ /\.git(/.*)?$ ]]; then
+    return
+  fi
+  count="$(git rev-list origin/master..master 2>/dev/null | wc -l | tr -d ' ')"
+  if [[ $count -ne 0 ]]; then
+    echo "[%{${fg_bold[red]}%}${count}%{$reset_color%}]"
+  fi
+  return 0
 }
 
 function rprompt-git-stash() {
-    local count
-    if [[ "$PWD" =~ /\.git(/.*)?$ ]]; then
-        return
-    fi
-    count="$(git stash list 2>/dev/null | wc -l | tr -d ' ')"
-    if [[ $count -ne 0 ]]; then
-        echo "[%{${fg_bold[yellow]}%}${count}%{$reset_color%}]"
-    fi
-    return 0
+  local count
+  if [[ "$PWD" =~ /\.git(/.*)?$ ]]; then
+    return
+  fi
+  count="$(git stash list 2>/dev/null | wc -l | tr -d ' ')"
+  if [[ $count -ne 0 ]]; then
+    echo "[%{${fg_bold[yellow]}%}${count}%{$reset_color%}]"
+  fi
+  return 0
 }
 
-function rprompt-git-current-branch {
-    local name st color
+function rprompt-git-current-branch() {
+  local name st color
 
-    if [[ "$PWD" =~ /\.git(/.*)?$ ]]; then
-        return
-    fi
-    name="$(git symbolic-ref --short HEAD 2> /dev/null)"
-    if [[ -z $name ]]; then
-        return
-    fi
-    st="$(git status 2> /dev/null)"
-    if echo "${st}" | grep -q "^nothing to"; then
-        color=${fg[green]}
-    elif echo "${st}" | grep -q "^nothing added"; then
-        color=${fg[yellow]}
-    elif echo "${st}" | grep -q "^Untracked"; then
-        color=${fg_bold[red]}
-    else
-        color=${fg[red]}
-    fi
+  if [[ "$PWD" =~ /\.git(/.*)?$ ]]; then
+    return
+  fi
+  name="$(git symbolic-ref --short HEAD 2>/dev/null)"
+  if [[ -z $name ]]; then
+    return
+  fi
+  st="$(git status 2>/dev/null)"
+  if echo "${st}" | grep -q "^nothing to"; then
+    color=${fg[green]}
+  elif echo "${st}" | grep -q "^nothing added"; then
+    color=${fg[yellow]}
+  elif echo "${st}" | grep -q "^Untracked"; then
+    color=${fg_bold[red]}
+  else
+    color=${fg[red]}
+  fi
 
-    commit_hash="$(git log --oneline 2>/dev/null | head -n1 | cut -d' ' -f1)"
+  commit_hash="$(git log --oneline 2>/dev/null | head -n1 | cut -d' ' -f1)"
 
-    if [[ $commit_hash = "" ]]; then
-        echo "[%{$color%}$name%{$reset_color%}]"
-    else
-        echo "[%{$color%}$name%{$reset_color%} $commit_hash]"
-    fi
+  if [[ $commit_hash = "" ]]; then
+    echo "[%{$color%}$name%{$reset_color%}]"
+  else
+    echo "[%{$color%}$name%{$reset_color%} $commit_hash]"
+  fi
 }
 
-function refresh-prompt {
-    PROMPT="%{${fg[magenta]}%}>%{$reset_color%} ${fg[yellow]}%}%(5~,%-2~/.../%2~,%~) ${fg[white]}%}[%D{%m-%d %T}]%{${reset_color}%} $(rprompt-git-current-branch)$(rprompt-git-not-pushed)$(rprompt-git-stash)
+function refresh-prompt() {
+  PROMPT="%{${fg[magenta]}%}>%{$reset_color%} ${fg[yellow]}%}%(5~,%-2~/.../%2~,%~) ${fg[white]}%}[%D{%m-%d %T}]%{${reset_color}%} $(rprompt-git-current-branch)$(rprompt-git-not-pushed)$(rprompt-git-stash)
 %{%(?.${reset_color}.${fg[red]})%}$%{${reset_color}%} "
 }
 

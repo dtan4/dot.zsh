@@ -32,9 +32,9 @@ alias v='vim'
 alias mojibake="echo -e '\026\033c'"
 
 if [[ -x "$(which colordiff)" ]]; then
-    alias diff='colordiff -u'
+  alias diff='colordiff -u'
 else
-    alias diff='diff -u'
+  alias diff='diff -u'
 fi
 
 autoload -Uz zmv

@@ -10,5 +10,5 @@ alias centos7='docker run -it --rm centos:7 /bin/bash'
 alias ubuntu='docker run -it --rm ubuntu:18.04 /bin/bash'
 
 function dbu() {
-    docker build -t "${1}" .
+  docker build -t "${1}" .
 }
