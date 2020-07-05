@@ -1,5 +1,7 @@
 # -*- mode: sh -*-
 
+# shellcheck source=/dev/null
+
 export LESSOPEN='| /usr/local/bin/src-hilite-lesspipe.sh %s'
 
 alias ls="ls -G -w"
