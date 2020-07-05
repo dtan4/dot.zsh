@@ -115,6 +115,14 @@ function current-gcp-project() {
   gcloud config get-value project
 }
 
+function list-gcp-projects() {
+  gcloud projects list
+}
+
 function current-k8s-context() {
   kubectl config current-context
+}
+
+function list-k8s-contexts() {
+  kubectl config get-contexts
 }
