@@ -50,7 +50,7 @@ function ec2-cssh() {
         ip_addresses=$(ec2s | awk '{ print $1 }' | tr '\n' ' ')
     fi
 
-    if [ -n $ip_addresses ]; then
+    if [ -n "${ip_addresses}" ]; then
         sh -c "tmux-cssh -u $ssh_user -i $ssh_key $ip_addresses"
     fi
 }
