@@ -70,8 +70,3 @@ function switch-k8s-context() {
 alias -g B='`git branch | peco | sed -e "s/^\*[ ]*//g"`'
 alias -g C='`git log --oneline --branches | peco | cut -d" " -f1`'
 alias -g F='`git ls-files | peco`'
-# TODO: using `kubectl config get-contexts` seems to be smarter
-alias -g K='`kubectl config view -o json | jq -r .clusters[].name | peco`'
-alias -g P='`docker ps | tail -n +2 | peco | cut -d" " -f1`'
-alias -g R='`git reflog | peco | cut -d" " -f1`'
-alias -g V='`vagrant box list | peco | cut -d" " -f1`'
