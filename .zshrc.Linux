@@ -3,6 +3,7 @@
 export LESSOPEN='| /usr/bin/source-highlight-esc.sh %s'
 
 alias ls='ls --color=auto'
+alias emacs="TERM=screen-24bit emacs"
 alias open="xdg-open"
 alias eclipse='MALLOC_CHECK_=0 /usr/local/eclipse/eclipse'
 
