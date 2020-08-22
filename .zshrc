@@ -103,16 +103,10 @@ setopt share_history
 
 REPORTTIME=3
 
-if [[ -d $HOME/.anyenv ]]; then
-  export PATH=~/.anyenv/bin:$PATH
-  export PATH=~/.anyenv/shims:$PATH
-  eval "$(anyenv init - --no-rehash zsh)"
-
-  # http://qiita.com/luckypool/items/f1e756e9d3e9786ad9ea
-  for D in "${HOME}"/.anyenv/envs/*; do
-    export PATH="$HOME/.anyenv/envs/$D/shims:$PATH"
-  done
-fi
+for xenv in rbenv nodenv; do
+  export PATH="${HOME}/.${xenv}/bin:${PATH}"
+  export PATH="${HOME}/.${xenv}/shims:${PATH}"
+done
 
 export _JAVA_OPTIONS="-Dfile.encoding=UTF-8"
 
