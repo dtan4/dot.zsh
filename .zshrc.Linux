@@ -4,8 +4,13 @@ export LESSOPEN='| /usr/bin/source-highlight-esc.sh %s'
 
 alias ls='ls --color=auto'
 alias emacs="TERM=screen-24bit emacs"
-alias open="xdg-open"
 alias eclipse='MALLOC_CHECK_=0 /usr/local/eclipse/eclipse'
+
+if which wsl-open > /dev/null 2>&1; then
+  alias open=wsl-open
+else
+  alias open=xdg-open
+fi
 
 export PATH=/usr/local/appengine-java-sdk/bin:$PATH
 export PATH=/usr/local/heroku/bin:$PATH
