@@ -7,8 +7,14 @@ alias emacs="TERM=screen-24bit emacs"
 alias eclipse='MALLOC_CHECK_=0 /usr/local/eclipse/eclipse'
 
 if which wsl-open > /dev/null 2>&1; then
+  # WSL2
   alias open=wsl-open
+
+  # for X410
+  # https://x410.dev/cookbook/wsl/using-x410-with-wsl2/
+  export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
 else
+  # Linux Desktop
   alias open=xdg-open
 fi
 
