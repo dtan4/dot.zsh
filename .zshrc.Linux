@@ -15,9 +15,14 @@ if which wsl-open > /dev/null 2>&1; then
   export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
 
   # use only one ssh-agent process throughout the login session
-  if [[ -z "${SSH_AGENT_PID}" ]]; then
-    ssh_agent_file=/tmp/ssh-agent
+  ssh_agent_file=/tmp/ssh-agent
 
+  if ! pgrep ssh-agent; then
+    rm -f "${ssh_agent_file}" || true
+    ssh-agent -s > "${ssh_agent_file}"
+  fi
+
+  if [[ -z "${SSH_AGENT_PID}" ]]; then
     if [[ ! -f "${ssh_agent_file}" ]]; then
       ssh-agent -s > "${ssh_agent_file}"
     fi
