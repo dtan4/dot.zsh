@@ -26,6 +26,7 @@ alias ocaml='rlwrap ocaml'
 alias pingg='ping www.google.com'
 alias r='rails'
 alias v='vim'
+alias code='code -a'
 
 # Escape from MOJIBAKEd shell
 # http://orangeclover.hatenablog.com/entry/20110201/1296511181
