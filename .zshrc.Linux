@@ -36,4 +36,13 @@ fi
 
 export PATH=/usr/local/appengine-java-sdk/bin:$PATH
 export PATH=/usr/local/heroku/bin:$PATH
+
+if [[ -d "${HOME}/google-cloud-sdk" ]]; then
+  export PATH="${HOME}/google-cloud-sdk/bin":$PATH
+
+  if [[ -f "${HOME}/google-cloud-sdk/completion.zsh.inc" ]]; then
+    source "${HOME}/google-cloud-sdk/completion.zsh.inc"
+  fi
+fi
+
 export PATH=$HOME/.cask/bin:$PATH
