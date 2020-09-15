@@ -45,4 +45,8 @@ if [[ -d "${HOME}/google-cloud-sdk" ]]; then
   fi
 fi
 
+if [[ -d "${HOME}/.cargo/bin" ]]; then
+  export PATH="${HOME}/.cargo/bin":$PATH
+fi
+
 export PATH=$HOME/.cask/bin:$PATH
