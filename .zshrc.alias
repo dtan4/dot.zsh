@@ -40,3 +40,7 @@ fi
 
 autoload -Uz zmv
 alias rename='noglob zmv -W'
+
+if [[ -x "$(which bazelisk)" ]]; then
+  alias bazel='bazelisk'
+fi
