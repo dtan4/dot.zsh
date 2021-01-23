@@ -51,7 +51,8 @@ function rprompt-git-current-branch() {
   if [[ $commit_hash = "" ]]; then
     echo "[%{$color%}$name%{$reset_color%}]"
   else
-    echo "[%{$color%}$name%{$reset_color%} $commit_hash]"
+    committer_date="$(git log -1 --pretty=format:%cI 2>/dev/null)"
+    echo "[%{$color%}$name%{$reset_color%} $commit_hash %{$fg[cyan]%}$committer_date%{$reset_color%}]"
   fi
 }
 
