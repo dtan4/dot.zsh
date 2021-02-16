@@ -164,4 +164,6 @@ compdef -d mysql
 if [ -f /usr/local/bin/terraform ]; then
   # terraform -install-autocomplete
   complete -C /usr/local/bin/terraform terraform
+elif [ -f /usr/bin/terraform ]; then
+  complete -C /usr/bin/terraform terraform
 fi
