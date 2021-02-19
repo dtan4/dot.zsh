@@ -17,6 +17,10 @@ export PATH=$HOME/.cargo/bin:$PATH
 export PATH=/opt/chefdk/bin:$PATH
 export PATH=/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH
 
+if [[ -d /usr/local/opt/llvm/bin ]]; then
+export PATH=/usr/local/opt/llvm/bin:$PATH
+fi
+
 # Since /usr/local/kubebuilder/bin has its own kubectl, it should be placed at the loweest priority
 export PATH=$PATH:/usr/local/kubebuilder/bin
 
