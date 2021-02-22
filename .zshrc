@@ -167,3 +167,9 @@ if [ -f /usr/local/bin/terraform ]; then
 elif [ -f /usr/bin/terraform ]; then
   complete -C /usr/bin/terraform terraform
 fi
+
+# Enable zsh completion of kubectl
+# http://kubernetes.io/docs/user-guide/kubectl/kubectl_completion/
+if which kubectl >/dev/null 2>&1; then
+  source <(kubectl completion zsh)
+fi
