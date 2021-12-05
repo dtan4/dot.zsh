@@ -94,6 +94,8 @@ export EDITOR=vim
 bindkey "" backward-delete-char
 
 HISTFILE=$HOME/.zsh_history
+HISTSIZE=1000000
+setopt histignorealldups
 setopt noincappendhistory
 setopt nosharehistory
 
