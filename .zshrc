@@ -120,7 +120,7 @@ if which peco >/dev/null 2>&1; then
   [ -f "${ZDOTDIR}/.zshrc.peco" ] && source "${ZDOTDIR}/.zshrc.peco"
 fi
 
-for rctype in "alias" "docker" "function" "prompt" "local" "$(uname)"; do
+for rctype in "alias" "function" "prompt" "local" "$(uname)"; do
   [ -f "${ZDOTDIR}/.zshrc.${rctype}" ] && source "${ZDOTDIR}/.zshrc.${rctype}"
 done
 

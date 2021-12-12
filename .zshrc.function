@@ -126,3 +126,7 @@ function current-k8s-context() {
 function list-k8s-contexts() {
   kubectl config get-contexts
 }
+
+function dbu() {
+  docker build -t "${1}" .
+}
