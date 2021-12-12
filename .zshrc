@@ -119,7 +119,7 @@ if which peco >/dev/null 2>&1; then
 fi
 
 for rctype in "alias" "function" "prompt" "local" "$(uname)"; do
-  [ -f "${ZDOTDIR}/.zshrc.${rctype}" ] && source "${ZDOTDIR}/.zshrc.${rctype}"
+  [ -f "${ZDOTDIR}/${rctype}.zshrc" ] && source "${ZDOTDIR}/${rctype}.zshrc"
 done
 
 function tmux-show-command() {

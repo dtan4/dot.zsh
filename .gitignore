@@ -2,3 +2,4 @@
 .zcompdump*
 .zcompcache
 .zshrc.local
+local.zshrc
