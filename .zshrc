@@ -115,7 +115,7 @@ if which direnv >/dev/null 2>&1; then
 fi
 
 if which peco >/dev/null 2>&1; then
-  [ -f "${ZDOTDIR}/.zshrc.peco" ] && source "${ZDOTDIR}/.zshrc.peco"
+  [ -f "${ZDOTDIR}/peco.zshrc" ] && source "${ZDOTDIR}/peco.zshrc"
 fi
 
 for rctype in "alias" "function" "prompt" "local" "$(uname)"; do
