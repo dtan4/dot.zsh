@@ -1,31 +1,17 @@
 # -*- mode: sh -*-
 
-alias javac="javac -J-Dfile.encoding=UTF8"
-# alias java="java -J-Dfile.encoding=UTF8"
-
 # reload .zshrc
 alias reload='exec zsh -l'
 
 # extend cd
 alias cddown='cd ~/Downloads'
 alias cdtmp='cd ~/tmp'
-alias cddrop='cd ~/Dropbox'
-alias cdarc='cd ~/Dropbox/Archives'
-alias cdmemo='cd ~/Dropbox/memo'
 alias cdgit='cd ~/src/github.com/dtan4'
 
 # extend existing command
-alias be='bundle exec'
-alias bi='bundle install'
-alias bg='bundle gem'
-alias bu='bundle update'
 alias curl='noglob curl' # Do not expand wildcards in URL
 alias g='git'
 alias gcc='gcc -Werror -Wall'
-alias ocaml='rlwrap ocaml'
-alias pingg='ping www.google.com'
-alias r='rails'
-alias v='vim'
 
 alias alpine='docker run -it --rm alpine:3.15 /bin/sh'
 alias ubuntu='docker run -it --rm ubuntu:22.04 /bin/bash'
@@ -39,9 +25,6 @@ if [[ -x "$(which colordiff)" ]]; then
 else
   alias diff='diff -u'
 fi
-
-autoload -Uz zmv
-alias rename='noglob zmv -W'
 
 if [[ -x "$(which bazelisk)" ]]; then
   alias bazel='bazelisk'

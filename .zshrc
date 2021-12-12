@@ -106,8 +106,6 @@ for xenv in rbenv nodenv; do
   export PATH="${HOME}/.${xenv}/shims:${PATH}"
 done
 
-export _JAVA_OPTIONS="-Dfile.encoding=UTF-8"
-
 # settings for Go
 export GOPATH=$HOME
 export PATH=$GOPATH/bin:$PATH
@@ -143,9 +141,6 @@ add-zsh-hook precmd tmux-show-pwd
 
 # configure completion again after all other files are loaded
 zplug load
-
-# completion alias
-compdef mosh=ssh
 
 # disable completion
 compdef -d npm

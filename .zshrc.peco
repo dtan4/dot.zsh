@@ -29,16 +29,6 @@ function peco-src() {
 zle -N peco-src
 bindkey "^W" peco-src
 
-function ec2s() {
-  local jq_query='.Reservations[] | .Instances[] | select(.State.Name != "terminated") | select(has("PublicIpAddress")) | [.PublicIpAddress,.PrivateIpAddress,.State.Name,(.Tags[] | select(.Key == "Name") | .Value // "")] | join("\t")'
-
-  if type envchain >/dev/null 2>&1; then
-    envchain "${1}" aws ec2 describe-instances | jq -r "${jq_query}" | peco
-  else
-    aws ec2 describe-instances | jq -r "${jq_query}" | peco
-  fi
-}
-
 function open-gcp-dashboard() {
   local project
   project="$(gcloud projects list | tail -n+2 | peco | awk '{ print $1 }')"

@@ -7,33 +7,8 @@ function cdtop() {
   fi
 }
 
-function e() {
-  local args
-
-  if [[ $# -eq 2 ]]; then
-    args="+${2} ${1}"
-  else
-    args="$(echo "${1}" | sed -E "s/([^:]+):([0-9:]+)/+\2 \1/g")"
-  fi
-
-  eval "emacsclient -n $args"
-}
-
 function ng() {
   git --no-pager "${@}"
-}
-
-function server() {
-  ruby -rwebrick -e 'WEBrick::HTTPServer.new({:DocumentRoot => "./", :Port => 8080}).start'
-}
-
-function ip2binary() {
-  if [[ "$#" != 1 ]]; then
-    echo "usage: ip2binary <IP_ADDRESS>" 2>&1
-    return 1
-  fi
-
-  echo "${1}" | ruby -e 'puts ARGF.read.strip.split(".").map { |f| ("%08b" % f) }.join(" ")'
 }
 
 # Execute `rehash` with ^L (clear screen)
@@ -87,28 +62,6 @@ function chpwd() {
     # http://qiita.com/usobuku/items/fce0f69586d82f963cbb
     tmux rename-window "zsh:$PWD:t"
   fi
-}
-
-function cleanup() {
-  find . -name '#*#' -type f -exec rm {} +
-}
-
-function update-gotools() {
-  echo "===> Updating bingo..."
-  go get -u -v github.com/saibing/bingo
-}
-
-# http://qiita.com/kawaz/items/20983ec286088a1ae5c7
-function update-ssh-known-hosts() {
-  if [ $# != 1 ]; then
-    echo "usage: update-ssh-known-hosts HOSTNAME"
-    return
-  fi
-
-  local hostname=$1
-
-  ssh-keygen -R "${hostname}"
-  ssh-keyscan -H "${hostname}" >>~/.ssh/known_hosts
 }
 
 function current-gcp-project() {

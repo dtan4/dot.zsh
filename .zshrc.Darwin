@@ -12,10 +12,7 @@ alias vless='/usr/local/share/vim/vim74/macros/less.sh'
 
 export PATH=/usr/sbin:$PATH
 export PATH=/usr/texbin:$PATH
-export PATH=$HOME/android-sdks/platform-tools:$PATH
 export PATH=$HOME/.cargo/bin:$PATH
-export PATH=/opt/chefdk/bin:$PATH
-export PATH=/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH
 
 if [[ -d /usr/local/opt/llvm/bin ]]; then
 export PATH=/usr/local/opt/llvm/bin:$PATH
@@ -29,7 +26,6 @@ source "${ZPLUG_HOME}"/repos/marzocchi/zsh-notify/notify.plugin.zsh
 export SYS_NOTIFIER="/usr/local/bin/terminal-notifier"
 export NOTIFY_COMMAND_COMPLETE_TIMEOUT=10
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
-export GROOVY_HOME=/usr/local/opt/groovy/libexec
 
 function dnsrefresh() {
   sudo dscacheutil -flushcache
