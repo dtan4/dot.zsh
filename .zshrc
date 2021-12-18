@@ -18,6 +18,13 @@ fi
 
 fpath=("$ZPLUG_HOME/repos/zsh-users/zsh-completions/src/" $fpath)
 
+if which rustup >/dev/null 2>&1; then
+  mkdir -p ~/.zfunc
+  fpath+=~/.zfunc
+  rustup completions zsh rustup >~/.zfunc/_rustup
+  rustup completions zsh cargo >~/.zfunc/_cargo
+fi
+
 autoload colors
 colors
 
