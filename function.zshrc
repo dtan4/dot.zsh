@@ -83,3 +83,19 @@ function list-k8s-contexts() {
 function dbu() {
   docker build -t "${1}" .
 }
+
+function update-go() {
+  local go_version
+  go_version="${1}"
+
+  if [[ "${go_version}" == "" ]]; then
+    echo "go_version is required" >&2
+    return 1
+  fi
+
+  go install "golang.org/dl/go${go_version}@latest"
+  "go${go_version}" download
+  ln -sf "${GOPATH}/bin/go${go_version}" "${GOPATH}/bin/go"
+
+  go version
+}
