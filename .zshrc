@@ -41,7 +41,6 @@ bindkey "^P" history-beginning-search-backward-end
 bindkey "^N" history-beginning-search-forward-end
 bindkey "^[[Z" reverse-menu-complete # reverse completion menu by Shift-Tab
 
-setopt auto_cd
 setopt auto_pushd
 setopt list_packed
 setopt nolistbeep
