@@ -107,9 +107,11 @@ setopt nosharehistory
 
 REPORTTIME=3
 
-for xenv in rbenv nodenv; do
-  export PATH="${HOME}/.${xenv}/bin:${PATH}"
-  export PATH="${HOME}/.${xenv}/shims:${PATH}"
+for xenv in rbenv nodenv tfenv; do
+  if [[ -d "${HOME}/.${xenv}" ]]; then
+    export PATH="${HOME}/.${xenv}/bin:${PATH}"
+    export PATH="${HOME}/.${xenv}/shims:${PATH}"
+  fi
 done
 
 # settings for Go
