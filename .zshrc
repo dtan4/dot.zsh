@@ -3,11 +3,16 @@
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
+mkdir -p ~/.zfunc
+fpath+=~/.zfunc
+
 if which rustup >/dev/null 2>&1; then
-  mkdir -p ~/.zfunc
-  fpath+=~/.zfunc
   rustup completions zsh rustup >~/.zfunc/_rustup
   rustup completions zsh cargo >~/.zfunc/_cargo
+fi
+
+if which gh >/dev/null 2>&1; then
+  gh completion -s zsh >~/.zfunc/_gh
 fi
 
 autoload colors
@@ -132,18 +137,6 @@ function tmux-show-pwd() {
 
 add-zsh-hook precmd tmux-show-pwd
 
-# disable completion
-compdef -d npm
-compdef -d scp
-compdef -d gem
-compdef -d thor
-compdef -d knife
-compdef -d kitchen
-compdef -d gradle
-compdef -d docker
-compdef -d mvn
-compdef -d mysql
-
 if [ -f /usr/local/bin/terraform ]; then
   # terraform -install-autocomplete
   complete -C /usr/local/bin/terraform terraform
@@ -181,3 +174,6 @@ autoload -Uz _zinit
 
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-syntax-highlighting
+
+autoload -Uz compinit
+compinit
