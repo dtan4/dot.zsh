@@ -5,17 +5,9 @@
 export LESSOPEN='| /usr/local/bin/src-hilite-lesspipe.sh %s'
 
 alias ls="ls -G -w"
-alias emacs='TERM=screen-24bit /usr/local/opt/emacs-mac/bin/emacs'
-alias emacsclient='TERM=screen-24bit /usr/local/opt/emacs-mac/bin/emacsclient'
-alias v8="rlwrap v8"
-alias vless='/usr/local/share/vim/vim74/macros/less.sh'
-
-export PATH=/usr/sbin:$PATH
-export PATH=/usr/texbin:$PATH
-export PATH=$HOME/.cargo/bin:$PATH
 
 if [[ -d /usr/local/opt/llvm/bin ]]; then
-export PATH=/usr/local/opt/llvm/bin:$PATH
+  export PATH=/usr/local/opt/llvm/bin:$PATH
 fi
 
 # Since /usr/local/kubebuilder/bin has its own kubectl, it should be placed at the loweest priority
@@ -25,11 +17,6 @@ source "${ZPLUG_HOME}"/repos/marzocchi/zsh-notify/notify.plugin.zsh
 
 export SYS_NOTIFIER="/usr/local/bin/terminal-notifier"
 export NOTIFY_COMMAND_COMPLETE_TIMEOUT=10
-export HOMEBREW_CASK_OPTS="--appdir=/Applications"
-
-function dnsrefresh() {
-  sudo dscacheutil -flushcache
-}
 
 [[ -d $(brew --prefix)/share/zsh/site-functions ]] && fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
 

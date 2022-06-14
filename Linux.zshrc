@@ -3,10 +3,8 @@
 export LESSOPEN='| /usr/bin/source-highlight-esc.sh %s'
 
 alias ls='ls --color=auto'
-alias emacs="TERM=screen-24bit emacs"
-alias eclipse='MALLOC_CHECK_=0 /usr/local/eclipse/eclipse'
 
-if which wsl-open > /dev/null 2>&1; then
+if which wsl-open >/dev/null 2>&1; then
   # WSL2
   alias open=wsl-open
   alias xdg-open=wsl-open
@@ -20,12 +18,12 @@ if which wsl-open > /dev/null 2>&1; then
 
   if ! pgrep ssh-agent; then
     rm -f "${ssh_agent_file}" || true
-    ssh-agent -s > "${ssh_agent_file}"
+    ssh-agent -s >"${ssh_agent_file}"
   fi
 
   if [[ -z "${SSH_AGENT_PID}" ]]; then
     if [[ ! -f "${ssh_agent_file}" ]]; then
-      ssh-agent -s > "${ssh_agent_file}"
+      ssh-agent -s >"${ssh_agent_file}"
     fi
 
     eval "$(cat "${ssh_agent_file}")"
@@ -35,9 +33,6 @@ else
   alias open=xdg-open
 fi
 
-export PATH=/usr/local/appengine-java-sdk/bin:$PATH
-export PATH=/usr/local/heroku/bin:$PATH
-
 if [[ -d "${HOME}/google-cloud-sdk" ]]; then
   export PATH="${HOME}/google-cloud-sdk/bin":$PATH
 
@@ -45,9 +40,3 @@ if [[ -d "${HOME}/google-cloud-sdk" ]]; then
     source "${HOME}/google-cloud-sdk/completion.zsh.inc"
   fi
 fi
-
-if [[ -d "${HOME}/.cargo/bin" ]]; then
-  export PATH="${HOME}/.cargo/bin":$PATH
-fi
-
-export PATH=$HOME/.cask/bin:$PATH

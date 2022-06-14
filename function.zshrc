@@ -11,15 +11,6 @@ function ng() {
   git --no-pager "${@}"
 }
 
-# Execute `rehash` with ^L (clear screen)
-# http://shinh.hatenablog.com/entry/20080424/1208971521
-function clear-screen-rehash() {
-  zle clear-screen
-  rehash
-}
-zle -N clear-screen-rehash
-bindkey '^L' clear-screen-rehash
-
 # Omit some items from `ls` result
 # http://qiita.com/yuyuchu3333/items/b10542db482c3ac8b059
 function ls_abbrev() {
@@ -68,16 +59,8 @@ function current-gcp-project() {
   gcloud config get-value project
 }
 
-function list-gcp-projects() {
-  gcloud projects list
-}
-
 function current-k8s-context() {
   kubectl config current-context
-}
-
-function list-k8s-contexts() {
-  kubectl config get-contexts
 }
 
 function dbu() {
