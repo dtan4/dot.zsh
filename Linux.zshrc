@@ -16,7 +16,7 @@ if which wsl-open >/dev/null 2>&1; then
   # use only one ssh-agent process throughout the login session
   ssh_agent_file=/tmp/ssh-agent
 
-  if ! pgrep ssh-agent; then
+  if ! pgrep ssh-agent >/dev/null; then
     rm -f "${ssh_agent_file}" || true
     ssh-agent -s >"${ssh_agent_file}"
   fi
