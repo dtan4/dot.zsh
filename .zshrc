@@ -147,7 +147,9 @@ fi
 # Enable zsh completion of kubectl
 # http://kubernetes.io/docs/user-guide/kubectl/kubectl_completion/
 if which kubectl >/dev/null 2>&1; then
-  source <(kubectl completion zsh)
+  # kubectl completion zsh tries to contact current-context
+  # https://gist.github.com/weltonrodrigo/ad17620e678c7231330aa73043cee8a2
+  source <(eval HTTPS_PROXY=1:1 kubectl completion zsh)
 fi
 
 if [[ -d "${HOME}/.local/bin" ]]; then
