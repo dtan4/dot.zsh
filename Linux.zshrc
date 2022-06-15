@@ -4,6 +4,10 @@ export LESSOPEN='| /usr/bin/source-highlight-esc.sh %s'
 
 alias ls='ls --color=auto'
 
+if [[ -f /usr/local/lib/libwindowsfidobridge.so ]]; then
+  export SSH_SK_PROVIDER=/usr/local/lib/libwindowsfidobridge.so
+fi
+
 if which wsl-open >/dev/null 2>&1; then
   # WSL2
   alias open=wsl-open
