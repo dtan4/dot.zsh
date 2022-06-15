@@ -13,8 +13,6 @@ fi
 # Since /usr/local/kubebuilder/bin has its own kubectl, it should be placed at the loweest priority
 export PATH=$PATH:/usr/local/kubebuilder/bin
 
-source "${ZPLUG_HOME}"/repos/marzocchi/zsh-notify/notify.plugin.zsh
-
 export SYS_NOTIFIER="/usr/local/bin/terminal-notifier"
 export NOTIFY_COMMAND_COMPLETE_TIMEOUT=10
 
