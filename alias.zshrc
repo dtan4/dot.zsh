@@ -29,3 +29,7 @@ fi
 if [[ -x "$(which bazelisk)" ]]; then
   alias bazel='bazelisk'
 fi
+
+if command -v bat >/dev/null 2>&1; then
+  alias bl="bat --paging always --style plain"
+fi
