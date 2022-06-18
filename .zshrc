@@ -98,9 +98,17 @@ setopt nosharehistory
 REPORTTIME=3
 
 for xenv in rbenv nodenv tfenv; do
-  if [[ -d "${HOME}/.${xenv}" ]]; then
-    export PATH="${HOME}/.${xenv}/bin:${PATH}"
-    export PATH="${HOME}/.${xenv}/shims:${PATH}"
+  xenv_dir="${HOME}/.${xenv}"
+
+  if [[ -d "${xenv_dir}" ]]; then
+    export PATH="${xenv_dir}/bin:${PATH}"
+    export PATH="${xenv_dir}/shims:${PATH}"
+
+    xenv_completions="${xenv_dir}/completions/${xenv}.zsh"
+
+    if [[ -f "${xenv_completions}" ]]; then
+      source "${xenv_completions}"
+    fi
   fi
 done
 
