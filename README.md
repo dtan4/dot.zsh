@@ -1,3 +1,5 @@
+# Merged into [dtan4/dotfiles](https://github.com/dtan4/dotfiles): https://github.com/dtan4/dotfiles/pull/8
+
 # .zsh
 
 ```
